@@ -6,8 +6,10 @@ export const API_CONFIG = {
     BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000',
     /** API endpoint paths */
     ENDPOINTS: {
-        USERS: '/api/users',
-        USERS_REGISTER: '/api/users/register',
+        USERS: {
+            LOGIN: '/api/users/login',
+            REGISTER: '/api/users/register',
+        },
         AUTH: '/api/auth',
         TEST: '/api/test',
         HEALTH: '/'

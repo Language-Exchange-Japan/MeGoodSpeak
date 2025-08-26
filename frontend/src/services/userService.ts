@@ -12,7 +12,7 @@ import type { IUser, IUserRegistrationRequest, ValidationError } from '../../../
  * @throws {AppError} When registration fails or validation errors occur
  */
 export async function registerUser(userData: IUserRegistrationRequest): Promise<{ message: string; user: IUser; token: string }> {
-  const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.USERS_REGISTER}`, {
+  const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.USERS.REGISTER}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

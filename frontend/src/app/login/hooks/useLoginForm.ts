@@ -1,5 +1,5 @@
 import { useAsync } from '../../../hooks/useAsync';
-import { useSimpleFormState } from '../../../hooks/useFormState';
+import { useLoginFormState } from '../../../hooks/useLoginFormState';
 import { loginUser } from '../../../services/userService';
 
 // Login data interface
@@ -21,7 +21,7 @@ const INITIAL_LOGIN_DATA: LoginData = {
  * @returns Object containing form state, handlers, and submission logic
  */
 export function useLoginForm() {
-  const { formData, handleChange } = useSimpleFormState<LoginData>(INITIAL_LOGIN_DATA);
+  const { formData, handleChange } = useLoginFormState<LoginData>(INITIAL_LOGIN_DATA);
 
   const { 
     data: loginResult, 
