@@ -2,11 +2,7 @@ import { API_CONFIG } from "@/constants/apiConstants";
 import { api } from "@/utils";
 
 import type { IUser, IUserRegistrationRequest } from "../../../shared/user.interface";
-
-/*import { API_CONFIG } from "../constants/apiConstants";
-import { api } from "../utils/apiClient";
-
-import type { IUser, IUserRegistrationRequest } from "../../../shared/user.interface";
+import type { ApiResponse } from "@/utils/apiClient";
 
 /**
  * Registers a new user with the backend API.
@@ -25,8 +21,8 @@ export async function registerUser(
 
   return {
     message: "Registration successful",
-    user: result.user,
-    token: result.token,
+    user: result.data.user,
+    token: result.data.token,
   };
 }
 
@@ -39,7 +35,6 @@ interface LoginRequest {
 }
 
 interface LoginResponse {
-  message: string;
   user: IUser;
   token: string;
 }
@@ -51,7 +46,7 @@ interface LoginResponse {
  * @returns The user data and authentication token.
  * @throws {AppError} Throws an AppError if the API response is not ok.
  */
-export async function loginUser(loginData: LoginRequest): Promise<LoginResponse> {
+export async function loginUser(loginData: LoginRequest): Promise<ApiResponse<LoginResponse>> {
   const result = await api.post<LoginResponse>(`${API_CONFIG.ENDPOINTS.AUTH}/login`, loginData);
 
   return result;
