@@ -30,7 +30,7 @@ interface ApiResponse<T = unknown> {
  * @returns Promise resolving to the API response data
  * @throws {AppError} When the request fails or validation errors occur
  */
-export async function apiRequest<T>(endpoint: string, options: ApiRequestOptions = {}): Promise<T> {
+export async function apiRequest<T>(endpoint: string, options: ApiRequestOptions = {}): Promise<ApiResponse<T>> {
 	const { method = "GET", body, headers = {} } = options;
 
 	const config: RequestInit = {
@@ -59,8 +59,8 @@ export async function apiRequest<T>(endpoint: string, options: ApiRequestOptions
 			throw new AppError(errorMessage, response.status);
 		}
 
-		// Return the data directly for successful responses
-		return data.data as T;
+		// Return the full response for successful responses
+		return data;
 	} catch (error) {
 		if (error instanceof AppError) {
 			throw error;

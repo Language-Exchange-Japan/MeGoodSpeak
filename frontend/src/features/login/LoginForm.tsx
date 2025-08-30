@@ -11,7 +11,7 @@ import { useLoginForm } from "./hooks/useLoginForm";
  * Demonstrates separation of concerns architecture.
  */
 export function LoginForm() {
-	const { formData, handleChange, handleSubmit, loginResult, submitError, isSubmitting } = useLoginForm();
+	const { formData, handleChange, handleSubmit, message, messageType, isSubmitting } = useLoginForm();
 
 	return (
 		<div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -19,7 +19,7 @@ export function LoginForm() {
 
 			<div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
 				<div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-					<LoginMessages submitError={submitError} loginResult={loginResult} />
+					<LoginMessages message={message} type={messageType} />
 
 					<form onSubmit={handleSubmit}>
 						<LoginFormFields

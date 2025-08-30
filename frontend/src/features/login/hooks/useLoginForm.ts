@@ -35,13 +35,18 @@ export function useLoginForm() {
 		await submitLogin();
 	};
 
+	const message = loginResult?.message || submitError?.message || null;
+	const messageType = submitError ? "error" : loginResult ? "success" : null;
+
 	return {
 		formData,
 		handleChange,
 		handleSubmit,
 		loginResult,
 		submitError,
-		isSubmitting
+		isSubmitting,
+		message,
+		messageType
 	};
 }
 
