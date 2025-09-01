@@ -10,6 +10,7 @@ import userRoutes from './routes/userRoutes';
 import cors from 'cors';
 import passport from 'passport';
 import configurePassport from './config/passport';
+import './models/User';
 
 // Load environment variables
 dotenv.config();

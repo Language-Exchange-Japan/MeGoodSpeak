@@ -1,16 +1,36 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+
 import { FlatCompat } from "@eslint/eslintrc";
+import unsedImports from "eslint-plugin-unused-imports";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname
+  baseDirectory: __dirname,
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
+
+  {
+    plugins: {
+      "unused-imports": unsedImports,
+    },
+    rules: {
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "warn",
+        {
+          vars: "all",
+          varsIgnorePattern: "^_",
+          args: "after-used",
+          argsIgnorePattern: "^_",
+        },
+      ],
+    },
+  },
 
   {
     files: ["**/*.ts", "**/*.tsx"],
@@ -20,14 +40,14 @@ const eslintConfig = [
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
-          argsIgnorePattern: "^_"
-        }
+          argsIgnorePattern: "^_",
+        },
       ],
       "@typescript-eslint/consistent-type-imports": [
         "error",
         {
-          prefer: "type-imports"
-        }
+          prefer: "type-imports",
+        },
       ],
 
       // React specific rules
@@ -41,12 +61,12 @@ const eslintConfig = [
       "no-console": [
         "warn",
         {
-          allow: ["warn", "error"]
-        }
+          allow: ["warn", "error"],
+        },
       ],
       "prefer-const": "warn",
-      "no-var": "error"
-    }
+      "no-var": "error",
+    },
   },
 
   {
@@ -63,16 +83,16 @@ const eslintConfig = [
             ["parent", "sibling"],
             "index",
             "object",
-            "type"
+            "type",
           ],
           "newlines-between": "always",
           alphabetize: {
             order: "asc",
-            caseInsensitive: true
-          }
-        }
-      ]
-    }
+            caseInsensitive: true,
+          },
+        },
+      ],
+    },
   },
 
   {
@@ -82,8 +102,8 @@ const eslintConfig = [
         "error",
         {
           properties: "never",
-          ignoreDestructuring: true
-        }
+          ignoreDestructuring: true,
+        },
       ],
       "@typescript-eslint/naming-convention": [
         "error",
@@ -92,26 +112,26 @@ const eslintConfig = [
           format: ["camelCase", "PascalCase"],
           filter: {
             regex: "^[A-Z]",
-            match: true
-          }
+            match: true,
+          },
         },
         {
           selector: "function",
           format: ["camelCase"],
           filter: {
             regex: "^use[A-Z]",
-            match: true
-          }
-        }
-      ]
-    }
+            match: true,
+          },
+        },
+      ],
+    },
   },
 
   {
     files: ["src/app/**/*.tsx"],
     rules: {
-      "import/no-default-export": "off"
-    }
+      "import/no-default-export": "off",
+    },
   },
 
   {
@@ -121,11 +141,11 @@ const eslintConfig = [
         "error",
         {
           argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_"
-        }
-      ]
-    }
-  }
+          varsIgnorePattern: "^_",
+        },
+      ],
+    },
+  },
 ];
 
 export default eslintConfig;
