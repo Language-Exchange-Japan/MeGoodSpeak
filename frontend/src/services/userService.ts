@@ -11,18 +11,23 @@ import type { ApiResponse } from "@/utils/apiClient";
  * @returns Promise resolving to registration response with user data and token
  * @throws {AppError} When registration fails or validation errors occur
  */
-export async function registerUser(
-  userData: IUserRegistrationRequest
-): Promise<{ message: string; user: IUser; token: string }> {
-  const result = await api.post<{ user: IUser; token: string }>(
-    API_CONFIG.ENDPOINTS.USERS_REGISTER,
-    userData
-  );
+export async function registerUser(userData: IUserRegistrationRequest): Promise<{ message: string; user: IUser; token: string }> {
+  const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.USERS.REGISTER}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  });
 
+  if (!response.ok) {
+    throw new Error('Registration failed');
+  }
+  const data = await response.json();
   return {
     message: "Registration successful",
-    user: result.data.user,
-    token: result.data.token,
+    user: data.user,
+    token: data.token,
   };
 }
 
@@ -47,7 +52,7 @@ interface LoginResponse {
  * @throws {AppError} Throws an AppError if the API response is not ok.
  */
 export async function loginUser(loginData: LoginRequest): Promise<ApiResponse<LoginResponse>> {
-  const result = await api.post<LoginResponse>(`${API_CONFIG.ENDPOINTS.AUTH}/login`, loginData);
+  const result = await api.post<LoginResponse>(`${API_CONFIG.ENDPOINTS.USERS.LOGIN}`, loginData);
 
   return result;
 }

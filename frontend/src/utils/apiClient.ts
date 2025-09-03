@@ -15,7 +15,7 @@ interface ApiRequestOptions {
 /**
  * Standard API response wrapper
  */
-interface ApiResponse<T = unknown> {
+export interface ApiResponse<T = unknown> {
 	success: boolean;
 	message: string;
 	data?: T;
