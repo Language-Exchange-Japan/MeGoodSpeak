@@ -27,6 +27,7 @@ export function RegistrationFormFields({ formData, handleChange, errors }: Regis
 					onChange={handleChange}
 					error={errors?.username}
 					required
+					autoComplete="username"
 				/>
 				<Input
 					label="Email"
@@ -36,6 +37,7 @@ export function RegistrationFormFields({ formData, handleChange, errors }: Regis
 					onChange={handleChange}
 					error={errors?.email}
 					required
+					autoComplete="email"
 				/>
 				<Input
 					label="Password"
@@ -45,6 +47,7 @@ export function RegistrationFormFields({ formData, handleChange, errors }: Regis
 					onChange={handleChange}
 					error={errors?.password}
 					required
+					autoComplete="current-password"
 				/>
 				<Input
 					label="First Name"
