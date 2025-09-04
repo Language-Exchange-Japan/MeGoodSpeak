@@ -27,6 +27,7 @@ export function RegistrationFormFields({ formData, handleChange, errors }: Regis
 					onChange={handleChange}
 					error={errors?.username}
 					required
+					autoComplete="username"
 				/>
 				<Input
 					label="Email"
@@ -36,6 +37,7 @@ export function RegistrationFormFields({ formData, handleChange, errors }: Regis
 					onChange={handleChange}
 					error={errors?.email}
 					required
+					autoComplete="email"
 				/>
 				<Input
 					label="Password"
@@ -45,6 +47,7 @@ export function RegistrationFormFields({ formData, handleChange, errors }: Regis
 					onChange={handleChange}
 					error={errors?.password}
 					required
+					autoComplete="new-password"
 				/>
 				<Input
 					label="First Name"
@@ -53,6 +56,7 @@ export function RegistrationFormFields({ formData, handleChange, errors }: Regis
 					onChange={handleChange}
 					error={errors?.firstName}
 					required
+					autoComplete="given-name"
 				/>
 				<Input
 					label="Family Name"
@@ -61,6 +65,7 @@ export function RegistrationFormFields({ formData, handleChange, errors }: Regis
 					onChange={handleChange}
 					error={errors?.familyName}
 					required
+					autoComplete="family-name"
 				/>
 			</FormSection>
 
@@ -114,6 +119,7 @@ export function RegistrationFormFields({ formData, handleChange, errors }: Regis
 					onChange={handleChange}
 					error={errors?.city}
 					required
+					autoComplete="address-level2"
 				/>
 				<Select
 					label="Gender"
