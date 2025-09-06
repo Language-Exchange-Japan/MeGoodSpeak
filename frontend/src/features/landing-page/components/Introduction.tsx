@@ -3,55 +3,24 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-interface HeroSectionProps {
-  title?: React.ReactNode;
-  subtitle?: string;
-  imageSrc?: string;
-  imageAlt?: string;
-  stats?: {
-    rating: string;
-    learners: string;
-    languages: string;
-  };
-}
-
 /**
- * Hero section component that displays the main landing page content with title, subtitle,
- * featured image, and statistics.
- *
- * @param title - Main title content (can include JSX elements)
- * @param subtitle - Subtitle text description
- * @param imageSrc - Source URL for the hero image
- * @param imageAlt - Alt text for the hero image
- * @param stats - Object containing rating, learners, and languages statistics
- * @returns Hero section with call-to-action and featured content
+ * App introduction section.
  */
-export const HeroSection: React.FC<HeroSectionProps> = ({
-  title = (
-    <>
-      Learn new
-      <span className="block text-gray-600">languages,</span>
-      <span className="block">make new friends</span>
-    </>
-  ),
-  subtitle = "Connect with native speakers around the world. Practice conversations, improve your skills, and build lasting friendships through language exchange.",
-  imageSrc = "/images/People-talking.png",
-  imageAlt = "People learning languages together",
-  stats = {
-    rating: "4.9/5 rating",
-    learners: "50k+ active learners",
-    languages: "100+ languages",
-  },
-}) => {
+export const Introduction = () => {
   return (
     <section className="px-6 py-16 lg:px-12 lg:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div className="space-y-8">
             <div className="space-y-6">
-              <h1 className="text-4xl leading-tight font-medium text-black lg:text-6xl">{title}</h1>
+              <div className="text-4xl leading-tight font-medium text-black lg:text-6xl">
+                Learn new
+                <span className="block text-gray-600">languages,</span>
+                <span className="block">make new friends</span>
+              </div>
               <p className="max-w-lg text-lg leading-relaxed text-gray-600 lg:text-xl">
-                {subtitle}
+                Connect with native speakers around the world. Practice conversations, improve your
+                skills, and build lasting friendships through language exchange.
               </p>
             </div>
 
@@ -72,17 +41,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <div className="flex items-center space-x-8 text-sm text-gray-600">
               <div className="flex items-center space-x-2">
                 <Star className="h-5 w-5 fill-current text-yellow-500" />
-                <span>{stats.rating}</span>
+                <span> 4.9/5 rating</span>
               </div>
-              <div>{stats.learners}</div>
-              <div>{stats.languages}</div>
+              <div>50k+ active learners</div>
+              <div>100+ languages</div>
             </div>
           </div>
 
           <div className="relative">
             <Image
-              src={imageSrc}
-              alt={imageAlt}
+              src="/images/People-talking.png"
+              alt="People learning languages together"
               width={800}
               height={600}
               className="h-auto w-full rounded-2xl shadow-2xl"
