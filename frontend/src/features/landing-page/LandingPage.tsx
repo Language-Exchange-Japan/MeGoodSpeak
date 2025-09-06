@@ -5,9 +5,10 @@ import React from "react";
 import { HeaderPublic } from "@/components/common/headers/HeaderPublic";
 
 import { CTASection } from "./components/CTASection";
-import { FeaturesSection } from "./components/FeaturesSection";
+import { FeaturesSection } from "./components/features/FeaturesSection";
+import { Footer } from "./components/footer/Footer";
 import { Introduction } from "./components/Introduction";
-import { StatsSection } from "./components/StatsSection";
+import { StatsSection } from "./components/stats/StatsSection";
 import { useHomePage } from "./hooks/useHomePage";
 
 export function LandingPage() {
@@ -20,6 +21,7 @@ export function LandingPage() {
       <FeaturesSection />
       <StatsSection />
       <CTASection />
+      <Footer />
     </div>
   );
 }
