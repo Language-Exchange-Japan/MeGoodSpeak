@@ -1,4 +1,4 @@
-import { HomePage } from "@/features/landing-page/HomePage";
+import { LandingPage } from "@/features/landing-page/LandingPage";
 
 import type { Metadata } from "next";
 
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomePage />;
+  return <LandingPage />;
 }
