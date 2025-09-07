@@ -2,152 +2,126 @@ import React from "react";
 
 import { Input, Select, TextArea, FormSection } from "../../../components/ui";
 import {
-	PROFICIENCY_OPTIONS,
-	GENDER_OPTIONS,
-	LANGUAGE_OPTIONS,
-	COUNTRY_OPTIONS
+  PROFICIENCY_OPTIONS,
+  GENDER_OPTIONS,
+  LANGUAGE_OPTIONS,
+  COUNTRY_OPTIONS,
 } from "../../../constants/formConstants";
 
 import type { IUserRegistrationRequest } from "../../../../../shared/user.interface";
+import type { UseFormRegister, FieldErrors } from "react-hook-form";
 
 export interface RegistrationFormFieldsProps {
-	formData: IUserRegistrationRequest;
-	handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
-	errors?: Record<string, string | undefined>;
+  register: UseFormRegister<IUserRegistrationRequest>;
+  errors: FieldErrors<IUserRegistrationRequest>;
 }
 
-export function RegistrationFormFields({ formData, handleChange, errors }: RegistrationFormFieldsProps) {
-	return (
-		<div className="space-y-6">
-			<FormSection title="Personal Information" useGrid>
-				<Input
-					label="Username"
-					name="username"
-					value={formData.username}
-					onChange={handleChange}
-					error={errors?.username}
-					required
-				/>
-				<Input
-					label="Email"
-					name="email"
-					type="email"
-					value={formData.email}
-					onChange={handleChange}
-					error={errors?.email}
-					required
-				/>
-				<Input
-					label="Password"
-					name="password"
-					type="password"
-					value={formData.password}
-					onChange={handleChange}
-					error={errors?.password}
-					required
-				/>
-				<Input
-					label="First Name"
-					name="firstName"
-					value={formData.firstName}
-					onChange={handleChange}
-					error={errors?.firstName}
-					required
-				/>
-				<Input
-					label="Family Name"
-					name="familyName"
-					value={formData.familyName}
-					onChange={handleChange}
-					error={errors?.familyName}
-					required
-				/>
-			</FormSection>
+export function RegistrationFormFields({ register, errors }: RegistrationFormFieldsProps) {
+  return (
+    <div className="space-y-6">
+      <FormSection title="Personal Information" useGrid>
+        <Input
+          label="Username"
+          {...register("username")}
+          error={errors.username?.message}
+          required
+        />
+        <Input
+          label="Email"
+          type="email"
+          {...register("email")}
+          error={errors.email?.message}
+          required
+        />
+        <Input
+          label="Password"
+          type="password"
+          {...register("password")}
+          error={errors.password?.message}
+          required
+        />
+        <Input
+          label="First Name"
+          {...register("firstName")}
+          error={errors.firstName?.message}
+          required
+        />
+        <Input
+          label="Family Name"
+          {...register("familyName")}
+          error={errors.familyName?.message}
+          required
+        />
+      </FormSection>
 
-			<FormSection title="Language Preferences" useGrid>
-				<Select
-					label="Native Language"
-					name="profileOptions.nativeLanguage"
-					value={formData.profileOptions.nativeLanguage}
-					onChange={handleChange}
-					options={LANGUAGE_OPTIONS}
-					placeholder="Select your native language"
-					error={errors?.nativeLanguage}
-					required
-				/>
-				<Select
-					label="Language to Practice"
-					name="profileOptions.practicingLanguage.language"
-					value={formData.profileOptions.practicingLanguage.language}
-					onChange={handleChange}
-					options={LANGUAGE_OPTIONS}
-					placeholder="Select language to practice"
-					error={errors?.practicingLanguage}
-					required
-				/>
-				<Select
-					label="Proficiency Level"
-					name="profileOptions.practicingLanguage.proficiency"
-					value={formData.profileOptions.practicingLanguage.proficiency}
-					onChange={handleChange}
-					options={PROFICIENCY_OPTIONS}
-					error={errors?.proficiency}
-					required
-				/>
-			</FormSection>
+      <FormSection title="Language Preferences" useGrid>
+        <Select
+          label="Native Language"
+          {...register("profileOptions.nativeLanguage")}
+          options={LANGUAGE_OPTIONS}
+          placeholder="Select your native language"
+          error={errors.profileOptions?.nativeLanguage?.message}
+          required
+        />
+        <Select
+          label="Language to Practice"
+          {...register("profileOptions.practicingLanguage.language")}
+          options={LANGUAGE_OPTIONS}
+          placeholder="Select language to practice"
+          error={errors.profileOptions?.practicingLanguage?.language?.message}
+          required
+        />
+        <Select
+          label="Proficiency Level"
+          {...register("profileOptions.practicingLanguage.proficiency")}
+          options={PROFICIENCY_OPTIONS}
+          error={errors.profileOptions?.practicingLanguage?.proficiency?.message}
+          required
+        />
+      </FormSection>
 
-			<FormSection title="Location & Personal Details" useGrid>
-				<Select
-					label="Country"
-					name="profileOptions.country"
-					value={formData.profileOptions.country}
-					onChange={handleChange}
-					options={COUNTRY_OPTIONS}
-					placeholder="Select your country"
-					error={errors?.country}
-					required
-				/>
-				<Input
-					label="City"
-					name="profileOptions.city"
-					value={formData.profileOptions.city}
-					onChange={handleChange}
-					error={errors?.city}
-					required
-				/>
-				<Select
-					label="Gender"
-					name="profileOptions.gender"
-					value={formData.profileOptions.gender}
-					onChange={handleChange}
-					options={GENDER_OPTIONS}
-					error={errors?.gender}
-					required
-				/>
-				<Input
-					label="Age"
-					name="profileOptions.age"
-					type="number"
-					min="13"
-					max="120"
-					value={formData.profileOptions.age}
-					onChange={handleChange}
-					error={errors?.age}
-					required
-				/>
-			</FormSection>
+      <FormSection title="Location & Personal Details" useGrid>
+        <Select
+          label="Country"
+          {...register("profileOptions.country")}
+          options={COUNTRY_OPTIONS}
+          placeholder="Select your country"
+          error={errors.profileOptions?.country?.message}
+          required
+        />
+        <Input
+          label="City"
+          {...register("profileOptions.city")}
+          error={errors.profileOptions?.city?.message}
+          required
+        />
+        <Select
+          label="Gender"
+          {...register("profileOptions.gender")}
+          options={GENDER_OPTIONS}
+          error={errors.profileOptions?.gender?.message}
+          required
+        />
+        <Input
+          label="Age"
+          type="number"
+          min="13"
+          max="120"
+          {...register("profileOptions.age")}
+          error={errors.profileOptions?.age?.message}
+          required
+        />
+      </FormSection>
 
-			<FormSection title="About You">
-				<TextArea
-					label="Bio"
-					name="bio"
-					value={formData.bio}
-					onChange={handleChange}
-					placeholder="Tell us a bit about yourself, your interests, and what you'd like to achieve through language exchange..."
-					error={errors?.bio}
-					helperText="Optional - help others get to know you better"
-				/>
-			</FormSection>
-		</div>
-	);
+      <FormSection title="About You">
+        <TextArea
+          label="Bio"
+          {...register("bio")}
+          placeholder="Tell us a bit about yourself, your interests, and what you'd like to achieve through language exchange..."
+          error={errors.bio?.message}
+          helperText="Optional - help others get to know you better"
+        />
+      </FormSection>
+    </div>
+  );
 }
