@@ -1,5 +1,3 @@
-import React from "react";
-
 interface LoginMessagesProps {
   message: string | null;
   messageType: "success" | "error" | null;

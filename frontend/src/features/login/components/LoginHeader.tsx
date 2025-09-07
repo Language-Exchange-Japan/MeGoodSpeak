@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 
 /**
  * Login page header component with branding and navigation.
