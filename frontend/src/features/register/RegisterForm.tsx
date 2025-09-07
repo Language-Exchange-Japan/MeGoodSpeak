@@ -2,10 +2,11 @@
 
 import React from "react";
 
+import { HeaderPublic } from "@/components/common/headers/HeaderPublic";
+
 import { RegisterFormActions, RegisterMessages } from "./components";
 import { useRegisterForm } from "./hooks/useRegisterForm";
 import { RegistrationFormFields } from "./RegistrationFormFields";
-import { PageHeader } from "../landing-page/PageHeader";
 
 /**
  * Main registration form component.
@@ -18,10 +19,7 @@ export const RegisterForm: React.FC = () => {
 
   return (
     <div className="max-w-4xl py-8">
-      <PageHeader
-        title="Create Your Account"
-        subtitle="Join our language exchange community and start practicing with native speakers"
-      />
+      <HeaderPublic />
 
       <RegisterMessages successMessage={successMessage} generalError={errors.general} />
 

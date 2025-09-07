@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
 import { HeaderPublic } from "@/components/common/headers/HeaderPublic";
-import Layout from "@/components/main-layout/Layout";
+import Layout from "@/components/common/Layout";
 import { getUserLocale } from "@/services/locale";
 
 import type { Metadata } from "next";
