@@ -24,6 +24,13 @@ export const CTASection = () => {
             Get Started Free
             <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
+
+          <Link
+            href="/about"
+            className="inline-flex items-center justify-center rounded-md border border-gray-600 px-8 py-4 text-lg font-medium text-white transition-colors duration-200 hover:border-white"
+          >
+            Learn More
+          </Link>
         </div>
 
         <div className="pt-8">

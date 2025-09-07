@@ -1,8 +1,9 @@
 import { Globe } from "lucide-react";
 import React from "react";
 
-import FooterLinksSection from "./FooterLinksSection";
+import { FooterLinksSection } from "./FooterLinksSection";
 import { FooterPolicies } from "./FooterPolicies";
+import { FooterSocialLinks } from "./FooterSocialLinks";
 
 export const Footer = () => {
   return (
@@ -20,8 +21,10 @@ export const Footer = () => {
               Connect with native speakers worldwide and master any language through real
               conversations.
             </p>
-          </div>
 
+            {/* Social medi links */}
+            <FooterSocialLinks />
+          </div>
           {/* Links */}
           <FooterLinksSection />
         </div>
