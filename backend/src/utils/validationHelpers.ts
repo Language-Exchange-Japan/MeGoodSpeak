@@ -13,7 +13,7 @@ import { SUPPORTED_COUNTRIES, SUPPORTED_LANGUAGES } from '../../../shared/user.i
  */
 export const isValidCountry = (value: string): boolean => {
     if (!value) return false;
-    
+   
     // Normalize the value by trimming whitespace and converting to lowercase
     const normalizedValue = value.trim().toLowerCase();
     
@@ -21,6 +21,7 @@ export const isValidCountry = (value: string): boolean => {
     return SUPPORTED_COUNTRIES.some((country) => 
         country.toLowerCase() === normalizedValue
     );
+
 };
 
 /**
@@ -30,8 +31,7 @@ export const isValidCountry = (value: string): boolean => {
  * @returns true if the language is valid, false otherwise
  */
 export const isValidLanguage = (value: string): boolean => {
-    if (!value) return false;
-    
+    if (!value) return false;    
     // Normalize the value by trimming whitespace and converting to lowercase
     const normalizedValue = value.trim().toLowerCase();
     

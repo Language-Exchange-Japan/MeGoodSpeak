@@ -5,14 +5,9 @@
 
 import mongoose, { Schema } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import type { IUser } from '../../../shared/user.interface';
+import { type IUser } from '../../../shared/user.interface';
 import type { IUserDocument } from '../types/declarations';
-import { getNames as getCountryNames } from 'country-list';
-import iso6391 from 'iso-639-1';
-
-// Get supported countries and languages for validation
-const supportedCountries = getCountryNames();
-const supportedLanguages = iso6391.getAllNames();
+import { isValidLanguage } from '../utils/validationHelpers';
 
 /**
  * Mongoose schema definition for User documents with validation and indexing.
@@ -71,13 +66,27 @@ const UserSchema = new Schema<IUserDocument>(
             nativeLanguage: {
                 type: String,
                 required: [true, 'Native language is required'],
-                enum: supportedLanguages,
+                validate: {
+                    validator(value: string) {
+                        return isValidLanguage(value);
+                    },
+                    message: (props: { value: string }) => {
+                        return `"${props.value}" is not a supported language`;
+                    },
+                },
             },
             practicingLanguage: {
                 language: {
                     type: String,
                     required: [true, 'Practicing language is required'],
-                    enum: supportedLanguages,
+                    validate: {
+                        validator(value: string) {
+                            return isValidLanguage(value);
+                        },
+                        message: (props: { value: string }) => {
+                            return `"${props.value}" is not a supported language`;
+                        },
+                    },
                 },
                 proficiency: {
                     type: String,
@@ -88,7 +97,7 @@ const UserSchema = new Schema<IUserDocument>(
             country: {
                 type: String,
                 required: [true, 'Country is required'],
-                enum: supportedCountries,
+                // No enum validation, just use a plain string type
             },
             city: {
                 type: String,
@@ -123,16 +132,23 @@ const UserSchema = new Schema<IUserDocument>(
     }
 );
 
-// A standard, robust pre-save hook for password hashing
+// Pre-save hook for user document
 UserSchema.pre('save', async function (next) {
-    if (!this.isModified('passwordHash')) {
-        next();
-        return;
-    }
+    try {
+        // Only hash the password if it's been modified
+        if (!this.isModified('passwordHash')) {
+            return next();
+        }
 
-    const salt = await bcrypt.genSalt(10);
-    this.passwordHash = await bcrypt.hash(this.passwordHash, salt);
-    next();
+        // Hash password with bcrypt
+        const salt = await bcrypt.genSalt(10);
+        this.passwordHash = await bcrypt.hash(this.passwordHash, salt);
+
+        next();
+    } catch (error) {
+        console.error('Error in pre-save hook:', error);
+        next(error as Error);
+    }
 });
 
 UserSchema.methods.matchPassword = async function (enteredPassword: string): Promise<boolean> {
