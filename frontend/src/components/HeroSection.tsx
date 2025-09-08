@@ -81,6 +81,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
           <div className="relative">
             <Image
+              priority={true}
               src={imageSrc}
               alt={imageAlt}
               width={800}
