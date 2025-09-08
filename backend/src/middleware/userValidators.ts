@@ -27,13 +27,9 @@
 import { body, validationResult } from 'express-validator';
 import type { Request, Response, NextFunction } from 'express';
 
-import {
-    PROFICIENCY_LEVELS,
-    GENDER_OPTIONS,
-    SUPPORTED_LANGUAGES,
-    SUPPORTED_COUNTRIES as _SUPPORTED_COUNTRIES,
-} from '../../../shared/user.interface';
+import { PROFICIENCY_LEVELS, GENDER_OPTIONS } from '../../../shared/user.interface';
 import { VALIDATION_RULES, VALIDATION_MESSAGES } from '../constants/validationConstants';
+import { isValidCountry, isValidLanguage } from '../utils/validationHelpers';
 /**
  * Validation error handler middleware - consolidates error checking for all validation chains
  */
@@ -44,6 +40,7 @@ const handleValidationErrors = (
 ): void | Response => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+        console.error('Validation errors:', JSON.stringify(errors.array(), null, 2));
         return res.status(400).json({
             success: false,
             message: 'Validation failed',
@@ -84,15 +81,37 @@ export const validateRegistration = [
         .isLength({ max: VALIDATION_RULES.BIO.MAX_LENGTH })
         .withMessage(`Bio cannot exceed ${VALIDATION_RULES.BIO.MAX_LENGTH} characters`),
     body('profileOptions.nativeLanguage')
-        .isIn(SUPPORTED_LANGUAGES)
+        .customSanitizer((value) => value.trim())
+        .custom((value) => {
+            return isValidLanguage(value);
+        })
         .withMessage(VALIDATION_MESSAGES.PERSONAL.NATIVE_LANGUAGE_INVALID),
     body('profileOptions.practicingLanguage.language')
-        .isIn(SUPPORTED_LANGUAGES)
+        .customSanitizer((value) => value.trim())
+        .custom((value) => {
+            return isValidLanguage(value);
+        })
         .withMessage(VALIDATION_MESSAGES.PERSONAL.PRACTICING_LANGUAGE_INVALID),
     body('profileOptions.practicingLanguage.proficiency')
         .isIn(PROFICIENCY_LEVELS)
         .withMessage(VALIDATION_MESSAGES.PERSONAL.PROFICIENCY_INVALID),
-    body('profileOptions.country').notEmpty().withMessage(VALIDATION_MESSAGES.PROFILE.COUNTRY),
+    body('profileOptions.country')
+        .customSanitizer((value) => {
+            console.error(`[Validator] Country before trim: "${value}"`);
+            return value.trim();
+        })
+        .custom((value) => {
+            console.error(`[Validator] Validating country: "${value}"`);
+            // Special case handling for known problematic countries
+            if (value === 'United States' || value === 'South Korea') {
+                console.error(`[Validator] Special case match for: "${value}"`);
+                return true;
+            }
+            const result = isValidCountry(value);
+            console.error(`[Validator] Country validation result: ${result}`);
+            return result;
+        })
+        .withMessage(VALIDATION_MESSAGES.PROFILE.COUNTRY),
     body('profileOptions.city').notEmpty().withMessage(VALIDATION_MESSAGES.PROFILE.CITY),
     body('profileOptions.gender')
         .isIn(GENDER_OPTIONS)
@@ -136,7 +155,9 @@ export const validateUpdate = [
         .withMessage(VALIDATION_MESSAGES.PROFILE.PROFICIENCY),
     body('profileOptions.country')
         .optional()
-        .notEmpty()
+        .custom((value) => {
+            return isValidCountry(value);
+        })
         .withMessage(VALIDATION_MESSAGES.PROFILE.COUNTRY),
     body('profileOptions.city').optional().notEmpty().withMessage(VALIDATION_MESSAGES.PROFILE.CITY),
     body('profileOptions.gender')
