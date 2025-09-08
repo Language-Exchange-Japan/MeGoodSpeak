@@ -32,7 +32,7 @@ export const DEFAULT_REGISTRATION_DATA: IUserRegistrationRequest = {
 			language: "Japanese" as const,
 			proficiency: "Beginner" as const
 		},
-		country: "United States" as const,
+		country: 'Japan' as const,
 		city: "",
 		gender: "Prefer not to say" as const,
 		age: 18
