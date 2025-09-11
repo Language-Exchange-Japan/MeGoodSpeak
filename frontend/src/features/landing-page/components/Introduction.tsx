@@ -50,6 +50,7 @@ export const Introduction = () => {
 
           <div className="relative">
             <Image
+              priority={true}
               src="/images/People-talking.png"
               alt="People learning languages together"
               width={800}

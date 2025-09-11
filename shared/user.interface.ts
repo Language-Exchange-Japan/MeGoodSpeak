@@ -43,9 +43,10 @@ export const SUPPORTED_COUNTRIES = [
     'Spain', 'Italy', 'Netherlands', 'Sweden', 'Norway', 'Denmark',
     'Finland', 'Poland', 'Russia', 'China', 'Japan', 'South Korea',
     'Australia', 'New Zealand', 'Brazil', 'Mexico', 'Argentina'
-] as const;
+];
 
-export type SupportedCountry = typeof SUPPORTED_COUNTRIES[number];
+// Using string type instead of const array type to avoid strict enum validation
+export type SupportedCountry = string;
 
 export interface IUser {
     // MongoDB has its own ID type. In the backend user.ts file, we are extending this file and the MongoDB document which have different ID types. THis creates an error. Research suggests using a new feature of Mongo DB (HydratedDocument). 

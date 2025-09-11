@@ -5,7 +5,7 @@
 
 import User from '../models/User';
 import AppError from '../../../shared/appError';
-import type { IUserRegistrationRequest } from '../../../shared/user.interface';
+import { SUPPORTED_COUNTRIES, type IUserRegistrationRequest } from '../../../shared/user.interface';
 import type { IUserDocument } from '../types/declarations';
 import { AuthService } from './authService';
 import { ERROR_MESSAGES, HTTP_STATUS, VALIDATION_MESSAGES } from '../constants/validationConstants';
@@ -63,13 +63,34 @@ export class UserService {
             profileOptions: userData.profileOptions,
         });
 
-        const savedUser = await newUser.save();
+        try {
+            const savedUser = await newUser.save();
 
-        // Generate token using Mongoose virtual id getter for safety
-        // Generate token using Mongoose's virtual 'id' getter (string representation of _id)
-        const token = AuthService.generateToken(savedUser.id);
+            // Generate token using Mongoose virtual id getter for safety
+            // Generate token using Mongoose's virtual 'id' getter (string representation of _id)
+            const token = AuthService.generateToken(savedUser.id);
 
-        return { user: savedUser, token };
+            return { user: savedUser, token };
+        } catch (error: any) {
+            console.error('Error saving user:', error);
+            if (error.name === 'ValidationError') {
+                console.error('Validation error details:', JSON.stringify(error.errors, null, 2));
+                // Log the specific country validation error if it exists
+                if (error.errors?.['profileOptions.country']) {
+                    console.error(
+                        'Country validation error:',
+                        error.errors['profileOptions.country']
+                    );
+                    console.error('Country value:', userData.profileOptions.country);
+                    console.error('Country value type:', typeof userData.profileOptions.country);
+                    console.error(
+                        'Is in SUPPORTED_COUNTRIES?',
+                        SUPPORTED_COUNTRIES.includes(userData.profileOptions.country)
+                    );
+                }
+            }
+            throw error;
+        }
     }
 
     /**
