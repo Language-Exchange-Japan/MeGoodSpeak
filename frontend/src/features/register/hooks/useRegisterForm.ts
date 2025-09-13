@@ -1,64 +1,60 @@
+// Refactored to use react-hook-form
+
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { DEFAULT_REGISTRATION_DATA } from "../../../constants/formConstants";
-import { useFormState } from "../../../hooks/useFormState";
-import { useFormValidation } from "../../../hooks/useFormValidation";
 import { registerUser } from "../../../services/userService";
 
+import type { SubmitHandler } from "react-hook-form";
+
+type RegistrationFormInputs = typeof DEFAULT_REGISTRATION_DATA;
+
 /**
- * Custom hook for registration form logic and state management.
+ * Custom hook for registration form logic and state management using react-hook-form.
  * Separates business logic from UI presentation.
  *
  * @returns Object containing form state, handlers, and submission logic
  */
 export function useRegisterForm() {
-	const { formData, handleChange, resetForm } = useFormState(DEFAULT_REGISTRATION_DATA);
-	const { errors, validateForm, clearErrors } = useFormValidation();
-	const [isLoading, setIsLoading] = useState(false);
-	const [successMessage, setSuccessMessage] = useState<string>("");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<RegistrationFormInputs>({
+    defaultValues: DEFAULT_REGISTRATION_DATA,
+    mode: "onSubmit",
+  });
 
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
-		setIsLoading(true);
-		clearErrors();
-		setSuccessMessage("");
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
-		// Client-side validation
-		if (!validateForm(formData)) {
-			setIsLoading(false);
-			return;
-		}
+  const onSubmit: SubmitHandler<RegistrationFormInputs> = async (data) => {
+    setSuccessMessage("");
+    try {
+      const result = await registerUser(data);
+      const userName = result.user?.firstName || result.user?.username || "User";
+      setSuccessMessage(`Registration successful! Welcome, ${userName}!`);
+      reset();
+    } catch (error) {
+      if (error instanceof Error) {
+        // TODO: Map server validation errors to specific fields
+        console.error("Registration error:", error.message);
+      }
+    }
+  };
 
-		try {
-			const result = await registerUser(formData);
-			const userName = result.user?.firstName || result.user?.username || "User";
-			setSuccessMessage(`Registration successful! Welcome, ${userName}!`);
-			resetForm();
-		} catch (error) {
-			if (error instanceof Error) {
-				// Handle validation errors or other specific errors
-				// For server-side errors, we'll display them as general errors for now
-				// TODO: Map server validation errors to specific fields
-				console.error("Registration error:", error.message);
-			}
-		} finally {
-			setIsLoading(false);
-		}
-	};
+  const handleReset = () => {
+    reset();
+    setSuccessMessage("");
+  };
 
-	const handleReset = () => {
-		resetForm();
-		clearErrors();
-		setSuccessMessage("");
-	};
-
-	return {
-		formData,
-		handleChange,
-		handleSubmit,
-		handleReset,
-		errors,
-		isLoading,
-		successMessage
-	};
+  return {
+    register,
+    handleSubmit: handleSubmit(onSubmit),
+    handleReset,
+    errors,
+    isLoading: isSubmitting,
+    successMessage,
+  };
 }

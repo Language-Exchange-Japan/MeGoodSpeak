@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
-
-import { LoginFormFields, LoginHeader, LoginMessages, LoginSocialOptions, LoginSubmitButton } from "./components";
+import { LoginFormFields } from "./components/LoginFormFields";
+import { LoginHeader } from "./components/LoginHeader";
+import { LoginMessages } from "./components/LoginMessages";
+import { LoginSocialOptions } from "./components/LoginSocialOptions";
+import { LoginSubmitButton } from "./components/LoginSubmitButton";
 import { useLoginForm } from "./hooks/useLoginForm";
 
 /**
@@ -11,32 +13,27 @@ import { useLoginForm } from "./hooks/useLoginForm";
  * Demonstrates separation of concerns architecture.
  */
 export function LoginForm() {
-	const { formData, handleChange, handleSubmit, message, messageType, isSubmitting } = useLoginForm();
+  const { register, handleSubmit, errors, message, messageType, isSubmitting } = useLoginForm();
 
-	return (
-		<div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-			<LoginHeader />
+  return (
+    <div className="flex min-h-screen flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8">
+      <LoginHeader />
 
-			<div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-				<div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-					<LoginMessages message={message} type={messageType} />
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
+          <LoginMessages message={message} messageType={messageType} />
 
-					<form onSubmit={handleSubmit}>
-						<LoginFormFields
-							email={formData.email}
-							password={formData.password}
-							isSubmitting={isSubmitting}
-							onChange={handleChange}
-						/>
+          <form onSubmit={handleSubmit}>
+            <LoginFormFields register={register} errors={errors} isSubmitting={isSubmitting} />
 
-						<div className="mt-6">
-							<LoginSubmitButton isSubmitting={isSubmitting} />
-						</div>
-					</form>
+            <div className="mt-6">
+              <LoginSubmitButton isSubmitting={isSubmitting} />
+            </div>
+          </form>
 
-					<LoginSocialOptions />
-				</div>
-			</div>
-		</div>
-	);
+          <LoginSocialOptions />
+        </div>
+      </div>
+    </div>
+  );
 }

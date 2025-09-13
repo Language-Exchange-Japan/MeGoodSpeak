@@ -1,4 +1,5 @@
 import React from "react";
+import { useFormContext } from "react-hook-form";
 
 import { Input, Select, TextArea, FormSection } from "../../../components/ui";
 import {
@@ -8,95 +9,74 @@ import {
 	COUNTRY_OPTIONS
 } from "../../../constants/formConstants";
 
-import type { IUserRegistrationRequest } from "../../../../../shared/user.interface";
+import type { RegistrationFormData } from "../hooks/validations/registrationShema";
 
-export interface RegistrationFormFieldsProps {
-	formData: IUserRegistrationRequest;
-	handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
-	errors?: Record<string, string | undefined>;
-}
-
-export function RegistrationFormFields({ formData, handleChange, errors }: RegistrationFormFieldsProps) {
+export function RegistrationFormFields() {
+	const { register, formState: { errors: formErrors } } = useFormContext<RegistrationFormData>(); 
 	return (
 		<div className="space-y-6">
 			<FormSection title="Personal Information" useGrid>
 				<Input
 					label="Username"
-					name="username"
-					value={formData.username}
-					onChange={handleChange}
-					error={errors?.username}
+					error={formErrors?.username?.message as string}
 					required
 					autoComplete="username"
+					{...register("username")}
 				/>
 				<Input
 					label="Email"
-					name="email"
 					type="email"
-					value={formData.email}
-					onChange={handleChange}
-					error={errors?.email}
+					error={formErrors?.email?.message as string}
 					required
 					autoComplete="email"
+					{...register("email")}
 				/>
 				<Input
 					label="Password"
-					name="password"
 					type="password"
-					value={formData.password}
-					onChange={handleChange}
-					error={errors?.password}
+					error={formErrors?.password?.message as string}
 					required
 					autoComplete="new-password"
+					{...register("password")}
 				/>
 				<Input
 					label="First Name"
-					name="firstName"
-					value={formData.firstName}
-					onChange={handleChange}
-					error={errors?.firstName}
+					error={formErrors?.firstName?.message as string}
 					required
 					autoComplete="given-name"
+					{...register("firstName")}
 				/>
 				<Input
 					label="Family Name"
-					name="familyName"
-					value={formData.familyName}
-					onChange={handleChange}
-					error={errors?.familyName}
+					error={formErrors?.familyName?.message as string}
 					required
 					autoComplete="family-name"
+					{...register("familyName")}
 				/>
 			</FormSection>
 
 			<FormSection title="Language Preferences" useGrid>
 				<Select
 					label="Native Language"
-					name="profileOptions.nativeLanguage"
-					value={formData.profileOptions.nativeLanguage}
-					onChange={handleChange}
 					options={LANGUAGE_OPTIONS}
 					placeholder="Select your native language"
-					error={errors?.nativeLanguage}
+					error={formErrors?.profileOptions?.nativeLanguage?.message as string}
 					required
+					{...register("profileOptions.nativeLanguage")}
 				/>
 				<Select
 					label="Language to Practice"
-					name="profileOptions.practicingLanguage.language"
-					value={formData.profileOptions.practicingLanguage.language}
-					onChange={handleChange}
+					{...register("profileOptions.practicingLanguage.language")}
 					options={LANGUAGE_OPTIONS}
 					placeholder="Select language to practice"
-					error={errors?.practicingLanguage}
+					error={formErrors?.profileOptions?.practicingLanguage?.language?.message as string}
 					required
 				/>
 				<Select
 					label="Proficiency Level"
-					name="profileOptions.practicingLanguage.proficiency"
-					value={formData.profileOptions.practicingLanguage.proficiency}
-					onChange={handleChange}
+					{...register("profileOptions.practicingLanguage.proficiency")}
 					options={PROFICIENCY_OPTIONS}
-					error={errors?.proficiency}
+					error={formErrors?.profileOptions?.practicingLanguage?.proficiency?.message as string}
 					required
 				/>
 			</FormSection>
@@ -104,54 +84,43 @@ export function RegistrationFormFields({ formData, handleChange, errors }: Regis
 			<FormSection title="Location & Personal Details" useGrid>
 				<Select
 					label="Country"
-					name="profileOptions.country"
-					value={formData.profileOptions.country}
-					onChange={handleChange}
 					options={COUNTRY_OPTIONS}
 					placeholder="Select your country"
-					error={errors?.country}
+					error={formErrors?.profileOptions?.country?.message as string}
+					{...register("profileOptions.country")}
 					required
 				/>
 				<Input
 					label="City"
-					name="profileOptions.city"
-					value={formData.profileOptions.city}
-					onChange={handleChange}
-					error={errors?.city}
+					error={formErrors?.profileOptions?.city?.message as string}
 					required
 					autoComplete="address-level2"
+					{...register("profileOptions.city")}
 				/>
 				<Select
 					label="Gender"
-					name="profileOptions.gender"
-					value={formData.profileOptions.gender}
-					onChange={handleChange}
+					{...register("profileOptions.gender")}	
 					options={GENDER_OPTIONS}
-					error={errors?.gender}
+					error={formErrors?.profileOptions?.gender?.message as string}
 					required
 				/>
 				<Input
 					label="Age"
-					name="profileOptions.age"
 					type="number"
 					min="13"
 					max="120"
-					value={formData.profileOptions.age}
-					onChange={handleChange}
-					error={errors?.age}
+					error={formErrors?.profileOptions?.age?.message as string}
 					required
+					{...register("profileOptions.age")}
 				/>
 			</FormSection>
 
 			<FormSection title="About You">
 				<TextArea
 					label="Bio"
-					name="bio"
-					value={formData.bio}
-					onChange={handleChange}
-					placeholder="Tell us a bit about yourself, your interests, and what you'd like to achieve through language exchange..."
-					error={errors?.bio}
+					error={formErrors?.bio?.message as string}
 					helperText="Optional - help others get to know you better"
+					{...register("bio")}
 				/>
 			</FormSection>
 		</div>
