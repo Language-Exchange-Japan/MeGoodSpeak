@@ -43,7 +43,13 @@ export function RegistrationFormFields({ register, errors }: RegistrationFormFie
         <Input
           label="Email"
           type="email"
-          {...register("email")}
+          {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "Please enter a valid email address"
+            }
+          })}
           error={errors.email?.message}
           required
         />
