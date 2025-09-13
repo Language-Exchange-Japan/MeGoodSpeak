@@ -22,7 +22,7 @@ export const Footer = () => {
               conversations.
             </p>
 
-            {/* Social medi links */}
+            {/* Social media links */}
             <FooterSocialLinks />
           </div>
           {/* Links */}
