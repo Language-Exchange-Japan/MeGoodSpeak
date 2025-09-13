@@ -2,7 +2,7 @@ import React from "react";
 
 import { FeatureCard } from "./FeatureCard";
 
-export const FeaturesSection = ({}) => {
+export const FeaturesSection = () => {
   return (
     <section className="bg-white px-6 py-16 lg:px-12 lg:py-24">
       <div className="mx-auto max-w-7xl">
