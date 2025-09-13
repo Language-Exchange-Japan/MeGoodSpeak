@@ -22,7 +22,21 @@ export function RegistrationFormFields({ register, errors }: RegistrationFormFie
       <FormSection title="Personal Information" useGrid>
         <Input
           label="Username"
-          {...register("username")}
+          {...register("username", {
+            required: "Username is required",
+            minLength: {
+              value: 3,
+              message: "Username must be at least 3 characters",
+            },
+            maxLength: {
+              value: 20,
+              message: "Username must be at most 20 characters",
+            },
+            pattern: {
+              value: /^[a-zA-Z0-9_]+$/,
+              message: "Username can only contain letters, numbers, and underscores",
+            },
+          })}
           error={errors.username?.message}
           required
         />
