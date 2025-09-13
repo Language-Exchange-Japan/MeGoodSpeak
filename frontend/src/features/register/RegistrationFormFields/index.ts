@@ -1,0 +1,1 @@
+export { RegistrationFormFields } from "./RegistrationFormFields";
