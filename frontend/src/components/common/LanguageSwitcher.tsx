@@ -1,7 +1,8 @@
 "use client";
 
 import { Globe } from "lucide-react";
-import { useState } from "react";
+import { useLocale } from "next-intl";
+import { useTransition } from "react";
 
 import {
   Select,
@@ -10,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/selectShadcn";
-import { defaultLocale } from "@/i18n/config";
+import { usePathname, useRouter } from "@/i18n/navigation";
 
 import type { Locale } from "@/i18n/config";
 
@@ -31,18 +32,24 @@ const languageOptions: LanguageOption[] = [
 ];
 
 export default function LanguageSwitcher() {
-  const [selectedLanguage, setSelectedLanguage] = useState<Locale>(defaultLocale);
+  const locale = useLocale() as Locale;
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
 
   const handleLanguageChange = (value: Locale) => {
-    setSelectedLanguage(value);
-    // TODO: Implement actual language switching logic
-    console.log("Language changed to:", value);
+    if (value === locale || isPending) return;
+
+    startTransition(() => {
+      // Use next-intl's router which automatically handles locale prefixes
+      router.replace(pathname, { locale: value });
+    });
   };
 
-  const selectedOption = languageOptions.find((option) => option.value === selectedLanguage);
+  const selectedOption = languageOptions.find((option) => option.value === locale);
 
   return (
-    <Select value={selectedLanguage} onValueChange={handleLanguageChange}>
+    <Select value={locale} onValueChange={handleLanguageChange} disabled={isPending}>
       <SelectTrigger className="w-fit min-w-[140px]">
         <div className="flex items-center gap-2">
           <Globe className="h-4 w-4" />
@@ -50,6 +57,7 @@ export default function LanguageSwitcher() {
             {selectedOption && (
               <span className="flex items-center gap-2">
                 <span>{selectedOption.label}</span>
+                {isPending && <span className="text-xs opacity-50">...</span>}
               </span>
             )}
           </SelectValue>
