@@ -2,6 +2,8 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import React from "react";
 
+import LanguageSwitcher from "../LanguageSwitcher";
+
 /**
  * Header shown to visitors who are not authenticated.
  */
@@ -17,6 +19,7 @@ export function HeaderPublic() {
         {t("appName")}
       </Link>
       <div className="flex items-center space-x-4">
+        <LanguageSwitcher />
         <Link
           href="/register"
           className="rounded-md border border-black px-6 py-2 text-sm font-medium text-black transition-colors duration-200 hover:bg-black hover:text-white"

@@ -1,5 +1,7 @@
 import React from "react";
 
+import LanguageSwitcher from "../LanguageSwitcher";
+
 import type { HeaderPublicProps } from "./types/types";
 
 /**
@@ -20,6 +22,7 @@ export function HeaderPrivate({ title = "MeGoodSpeak", subtitle, children }: Hea
         </div>
         {children && <div className="flex items-center space-x-2">{children}</div>}
       </div>
+      <LanguageSwitcher />
     </div>
   );
 }
