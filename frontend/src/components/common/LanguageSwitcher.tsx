@@ -50,7 +50,7 @@ export default function LanguageSwitcher() {
 
   return (
     <Select value={locale} onValueChange={handleLanguageChange} disabled={isPending}>
-      <SelectTrigger className="w-fit min-w-[140px]">
+      <SelectTrigger className="w-fit min-w-[140px] cursor-pointer">
         <div className="flex items-center gap-2">
           <Globe className="h-4 w-4" />
           <SelectValue>
@@ -65,7 +65,7 @@ export default function LanguageSwitcher() {
       </SelectTrigger>
       <SelectContent>
         {languageOptions.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
+          <SelectItem key={option.value} value={option.value} className="cursor-pointer">
             <span className="flex items-center gap-2">
               <span>{option.label}</span>
             </span>
