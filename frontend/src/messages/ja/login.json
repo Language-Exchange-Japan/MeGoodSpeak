@@ -1,0 +1,37 @@
+{
+  "title": "おかえりなさい",
+  "subtitle": "アカウントにサインイン",
+  "form": {
+    "email": {
+      "label": "メールアドレス",
+      "placeholder": "メールアドレスを入力"
+    },
+    "password": {
+      "label": "パスワード",
+      "placeholder": "パスワードを入力"
+    },
+    "submitButton": "サインイン",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "rememberMe": "ログイン状態を保持"
+  },
+  "socialLogin": {
+    "title": "または以下で続行",
+    "google": "Googleで続行",
+    "facebook": "Facebookで続行"
+  },
+  "signup": {
+    "text": "アカウントをお持ちでないですか？",
+    "link": "サインアップ"
+  },
+  "validation": {
+    "emailRequired": "メールアドレスが必要です",
+    "emailInvalid": "有効なメールアドレスを入力してください",
+    "passwordRequired": "パスワードが必要です",
+    "passwordTooShort": "パスワードは8文字以上である必要があります"
+  },
+  "errors": {
+    "invalidCredentials": "メールアドレスまたはパスワードが無効です",
+    "serverError": "何らかの問題が発生しました。もう一度お試しください。",
+    "networkError": "ネットワークエラーです。接続を確認してください。"
+  }
+}

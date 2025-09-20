@@ -1,0 +1,37 @@
+{
+  "title": "Welcome Back",
+  "subtitle": "Sign in to your account",
+  "form": {
+    "email": {
+      "label": "Email Address",
+      "placeholder": "Enter your email"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password"
+    },
+    "submitButton": "Sign In",
+    "forgotPassword": "Forgot your password?",
+    "rememberMe": "Remember me"
+  },
+  "socialLogin": {
+    "title": "Or continue with",
+    "google": "Continue with Google",
+    "facebook": "Continue with Facebook"
+  },
+  "signup": {
+    "text": "Don't have an account?",
+    "link": "Sign up"
+  },
+  "validation": {
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordTooShort": "Password must be at least 8 characters long"
+  },
+  "errors": {
+    "invalidCredentials": "Invalid email or password",
+    "serverError": "Something went wrong. Please try again.",
+    "networkError": "Network error. Please check your connection."
+  }
+}

@@ -4,7 +4,7 @@ import { getUserLocale } from "@/services/locale";
 
 export default getRequestConfig(async () => {
   const locale = await getUserLocale();
-  const messageFiles = ["common"];
+  const messageFiles = ["common", "login"];
 
   // Load and merge all message files
   const messages = {};
