@@ -1,37 +1,45 @@
 {
-  "title": "Welcome Back",
-  "subtitle": "Sign in to your account",
+  "header": {
+    "brandName": "Language Exchange",
+    "title": "Sign in to your account",
+    "signupPrompt": "Or",
+    "signupLink": "create a new account"
+  },
   "form": {
     "email": {
-      "label": "Email Address",
+      "label": "Email address",
       "placeholder": "Enter your email"
     },
     "password": {
       "label": "Password",
       "placeholder": "Enter your password"
     },
-    "submitButton": "Sign In",
+    "rememberMe": "Remember me",
     "forgotPassword": "Forgot your password?",
-    "rememberMe": "Remember me"
+    "submitButton": {
+      "default": "Sign in",
+      "submitting": "Signing in..."
+    }
   },
   "socialLogin": {
-    "title": "Or continue with",
-    "google": "Continue with Google",
-    "facebook": "Continue with Facebook"
-  },
-  "signup": {
-    "text": "Don't have an account?",
-    "link": "Sign up"
+    "divider": "Or continue with",
+    "google": "Google",
+    "facebook": "Facebook"
   },
   "validation": {
     "emailRequired": "Email is required",
     "emailInvalid": "Please enter a valid email address",
     "passwordRequired": "Password is required",
-    "passwordTooShort": "Password must be at least 8 characters long"
+    "passwordMinLength": "Password must be at least 6 characters"
   },
-  "errors": {
-    "invalidCredentials": "Invalid email or password",
-    "serverError": "Something went wrong. Please try again.",
-    "networkError": "Network error. Please check your connection."
+  "messages": {
+    "success": {
+      "loginSuccess": "Successfully signed in!"
+    },
+    "error": {
+      "invalidCredentials": "Invalid email or password",
+      "serverError": "Something went wrong. Please try again.",
+      "networkError": "Network error. Please check your connection."
+    }
   }
 }

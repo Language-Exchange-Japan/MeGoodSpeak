@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface LoginSubmitButtonProps {
   isSubmitting: boolean;
@@ -10,6 +11,8 @@ interface LoginSubmitButtonProps {
  * @param isSubmitting - Whether form is currently submitting
  */
 export function LoginSubmitButton({ isSubmitting }: LoginSubmitButtonProps) {
+  const t = useTranslations("form.submitButton");
+
   return (
     <button
       type="submit"
@@ -20,7 +23,7 @@ export function LoginSubmitButton({ isSubmitting }: LoginSubmitButtonProps) {
           : "bg-black hover:bg-gray-800 focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none"
       }`}
     >
-      {isSubmitting ? "Signing in..." : "Sign in"}
+      {isSubmitting ? t("submitting") : t("default")}
       {!isSubmitting && (
         <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
       )}

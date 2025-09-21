@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 import type { UseFormRegister, FieldErrors } from "react-hook-form";
 
 interface LoginData {
@@ -20,11 +22,14 @@ interface LoginFormFieldsProps {
  * @param isSubmitting - Whether form is currently submitting
  */
 export function LoginFormFields({ register, errors, isSubmitting }: LoginFormFieldsProps) {
+  const t = useTranslations("form");
+  const tValidation = useTranslations("validation");
+
   return (
     <div className="space-y-6">
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-          Email address
+          {t("email.label")}
         </label>
         <div className="mt-1">
           <input
@@ -33,10 +38,10 @@ export function LoginFormFields({ register, errors, isSubmitting }: LoginFormFie
             autoComplete="email"
             required
             {...register("email", {
-              required: "Email is required",
+              required: tValidation("emailRequired"),
               pattern: {
                 value: /^\S+@\S+$/i,
-                message: "Please enter a valid email address",
+                message: tValidation("emailInvalid"),
               },
             })}
             disabled={isSubmitting}
@@ -45,7 +50,7 @@ export function LoginFormFields({ register, errors, isSubmitting }: LoginFormFie
             className={`block w-full appearance-none border px-3 py-2 ${
               errors.email ? "border-red-500" : "border-gray-300"
             } rounded-md text-gray-900 placeholder-gray-400 focus:border-black focus:ring-black focus:outline-none disabled:bg-gray-100 sm:text-sm`}
-            placeholder="Enter your email"
+            placeholder={t("email.placeholder")}
           />
         </div>
         {errors.email && (
@@ -57,7 +62,7 @@ export function LoginFormFields({ register, errors, isSubmitting }: LoginFormFie
 
       <div>
         <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-          Password
+          {t("password.label")}
         </label>
         <div className="mt-1">
           <input
@@ -66,10 +71,10 @@ export function LoginFormFields({ register, errors, isSubmitting }: LoginFormFie
             autoComplete="current-password"
             required
             {...register("password", {
-              required: "Password is required",
+              required: tValidation("passwordRequired"),
               minLength: {
                 value: 6,
-                message: "Password must be at least 6 characters",
+                message: tValidation("passwordMinLength"),
               },
             })}
             disabled={isSubmitting}
@@ -78,7 +83,7 @@ export function LoginFormFields({ register, errors, isSubmitting }: LoginFormFie
             className={`block w-full appearance-none rounded-md border ${
               errors.password ? "border-red-500" : "border-gray-300"
             } px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-black focus:ring-black focus:outline-none disabled:bg-gray-100 sm:text-sm`}
-            placeholder="Enter your password"
+            placeholder={t("password.placeholder")}
           />
         </div>
         {errors.password && (
@@ -98,13 +103,13 @@ export function LoginFormFields({ register, errors, isSubmitting }: LoginFormFie
             className="h-4 w-4 rounded border-gray-300 text-black focus:ring-black disabled:opacity-50"
           />
           <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-            Remember me
+            {t("rememberMe")}
           </label>
         </div>
 
         <div className="text-sm">
           <a href="#" className="font-medium text-black hover:underline">
-            Forgot your password?
+            {t("forgotPassword")}
           </a>
         </div>
       </div>
