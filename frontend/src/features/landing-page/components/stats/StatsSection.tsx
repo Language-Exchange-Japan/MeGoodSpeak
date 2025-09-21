@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { StatItem } from "./StatsItem";
 
 export const StatsSection = () => {
-  const t = useTranslations("stats");
+  const t = useTranslations("landing.stats");
 
   return (
     <section className="bg-gray-50 px-6 py-16 lg:px-12 lg:py-24">

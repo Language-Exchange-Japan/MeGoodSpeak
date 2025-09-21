@@ -1,10 +1,11 @@
+import { useTranslations } from "next-intl";
 import React from "react";
 
-import { Button } from "../../../components/ui/Button";
+import { Button } from "../../../components/ui/Button/Button";
 
 interface RegisterFormActionsProps {
-	isLoading: boolean;
-	onReset: () => void;
+  isLoading: boolean;
+  onReset: () => void;
 }
 
 /**
@@ -15,14 +16,16 @@ interface RegisterFormActionsProps {
  * @param onReset - Reset form handler
  */
 export function RegisterFormActions({ isLoading, onReset }: RegisterFormActionsProps) {
-	return (
-		<div className="mt-8 flex justify-end space-x-4">
-			<Button type="button" variant="outline" onClick={onReset} disabled={isLoading}>
-				Reset Form
-			</Button>
-			<Button type="submit" isLoading={isLoading} disabled={isLoading}>
-				{isLoading ? "Creating Account..." : "Create Account"}
-			</Button>
-		</div>
-	);
+  const t = useTranslations("register.actions");
+
+  return (
+    <div className="mt-8 flex justify-end space-x-4">
+      <Button type="button" variant="outline" onClick={onReset} disabled={isLoading}>
+        {t("resetForm")}
+      </Button>
+      <Button type="submit" isLoading={isLoading} disabled={isLoading}>
+        {isLoading ? t("createAccount.loading") : t("createAccount.default")}
+      </Button>
+    </div>
+  );
 }

@@ -6,7 +6,7 @@ import { Link } from "@/i18n/navigation";
  * Login page header component with branding and navigation.
  */
 export function LoginHeader() {
-  const t = useTranslations("header");
+  const t = useTranslations("login.header");
 
   return (
     <div className="sm:mx-auto sm:w-full sm:max-w-md">

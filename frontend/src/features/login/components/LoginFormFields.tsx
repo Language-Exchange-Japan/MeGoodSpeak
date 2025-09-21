@@ -22,8 +22,8 @@ interface LoginFormFieldsProps {
  * @param isSubmitting - Whether form is currently submitting
  */
 export function LoginFormFields({ register, errors, isSubmitting }: LoginFormFieldsProps) {
-  const t = useTranslations("form");
-  const tValidation = useTranslations("validation");
+  const t = useTranslations("login.form");
+  const tValidation = useTranslations("login.validation");
 
   return (
     <div className="space-y-6">

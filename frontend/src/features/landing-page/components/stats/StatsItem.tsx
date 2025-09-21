@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 
 export const StatItem = () => {
-  const t = useTranslations("stats.items");
+  const t = useTranslations("landing.stats.items");
 
   const stats = [
     { key: "learners" },

@@ -8,15 +8,21 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;
   const locale = hasLocale(routing.locales, requested) ? requested : routing.defaultLocale;
 
-  const messageFiles = ["common", "login", "landing"];
+  const messageFiles = ["common", "login", "landing", "register"];
 
-  // Load and merge all message files
-  const messages = {};
+  // Load all message files into their own namespaces
+  const messages: Record<string, unknown> = {};
 
   for (const file of messageFiles) {
     try {
       const fileMessages = (await import(`../messages/${locale}/${file}.json`)).default;
-      Object.assign(messages, fileMessages);
+      if (file === "common") {
+        // Common messages go to root level for backward compatibility
+        Object.assign(messages, fileMessages);
+      } else {
+        // Other files get their own namespace
+        messages[file] = fileMessages;
+      }
     } catch (error) {
       console.warn(`Could not load ${file}.json for locale ${locale}:`, error);
     }

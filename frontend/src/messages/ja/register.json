@@ -1,0 +1,107 @@
+{
+  "header": {
+    "title": "アカウントを作成",
+    "description": "言語交換コミュニティに参加して、ネイティブスピーカーとの練習を始めましょう"
+  },
+  "sections": {
+    "personalInfo": "個人情報",
+    "languagePreferences": "言語の設定",
+    "locationDetails": "居住地・個人詳細",
+    "aboutYou": "自己紹介"
+  },
+  "form": {
+    "username": {
+      "label": "ユーザー名",
+      "placeholder": "ユーザー名を入力してください"
+    },
+    "email": {
+      "label": "メールアドレス",
+      "placeholder": "メールアドレスを入力してください"
+    },
+    "password": {
+      "label": "パスワード",
+      "placeholder": "パスワードを入力してください"
+    },
+    "firstName": {
+      "label": "名前",
+      "placeholder": "名前を入力してください"
+    },
+    "familyName": {
+      "label": "姓",
+      "placeholder": "姓を入力してください"
+    },
+    "nativeLanguage": {
+      "label": "母語",
+      "placeholder": "母語を選択してください"
+    },
+    "practicingLanguage": {
+      "label": "学習言語",
+      "placeholder": "学習したい言語を選択してください"
+    },
+    "proficiency": {
+      "label": "習熟度",
+      "placeholder": "習熟度レベルを選択してください"
+    },
+    "country": {
+      "label": "国",
+      "placeholder": "国を選択してください"
+    },
+    "city": {
+      "label": "都市",
+      "placeholder": "都市を入力してください"
+    },
+    "gender": {
+      "label": "性別",
+      "placeholder": "性別を選択してください"
+    },
+    "age": {
+      "label": "年齢",
+      "placeholder": "年齢を入力してください"
+    },
+    "bio": {
+      "label": "自己紹介文",
+      "placeholder": "あなた自身について、興味のあることや言語交換で達成したい目標などを教えてください...",
+      "helperText": "任意 - 他の人があなたのことをより知るのに役立ちます"
+    }
+  },
+  "actions": {
+    "resetForm": "フォームをリセット",
+    "createAccount": {
+      "default": "アカウントを作成",
+      "loading": "アカウント作成中..."
+    }
+  },
+  "validation": {
+    "usernameRequired": "ユーザー名は必須です",
+    "usernameMinLength": "ユーザー名は3文字以上である必要があります",
+    "usernameMaxLength": "ユーザー名は20文字以下である必要があります",
+    "usernamePattern": "ユーザー名には英数字とアンダースコアのみ使用できます",
+    "emailRequired": "メールアドレスは必須です",
+    "emailInvalid": "有効なメールアドレスを入力してください",
+    "passwordRequired": "パスワードは必須です",
+    "passwordMinLength": "パスワードは8文字以上である必要があります",
+    "passwordPattern": "パスワードには大文字、小文字、数字、特殊文字をそれぞれ1文字以上含める必要があります",
+    "firstNameRequired": "名前は必須です",
+    "familyNameRequired": "姓は必須です",
+    "nativeLanguageRequired": "母語の選択は必須です",
+    "practicingLanguageRequired": "学習言語の選択は必須です",
+    "proficiencyRequired": "習熟度の選択は必須です",
+    "countryRequired": "国の選択は必須です",
+    "cityRequired": "都市の入力は必須です",
+    "genderRequired": "性別の選択は必須です",
+    "ageRequired": "年齢の入力は必須です",
+    "ageMin": "年齢は13歳以上である必要があります",
+    "ageMax": "年齢は120歳以下である必要があります"
+  },
+  "messages": {
+    "success": {
+      "accountCreated": "アカウントが正常に作成されました！Language Exchangeへようこそ！"
+    },
+    "error": {
+      "generalError": "アカウント作成中に問題が発生しました。もう一度お試しください。",
+      "emailExists": "このメールアドレスのアカウントは既に存在します。",
+      "usernameExists": "このユーザー名は既に使用されています。",
+      "networkError": "ネットワークエラーです。接続を確認してもう一度お試しください。"
+    }
+  }
+}

@@ -43,7 +43,7 @@ const sections = [
 ];
 
 export const FooterLinksSection: React.FC = () => {
-  const t = useTranslations("footer.sections");
+  const t = useTranslations("landing.footer.sections");
 
   return (
     <>

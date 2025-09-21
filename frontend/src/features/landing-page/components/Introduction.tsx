@@ -9,7 +9,7 @@ import { Link } from "@/i18n/navigation";
  * App introduction section.
  */
 export const Introduction = () => {
-  const t = useTranslations("introduction");
+  const t = useTranslations("landing.introduction");
 
   return (
     <section className="px-6 py-16 lg:px-12 lg:py-24">

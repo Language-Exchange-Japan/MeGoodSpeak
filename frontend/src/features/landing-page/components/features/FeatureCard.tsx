@@ -2,7 +2,7 @@ import { Award, Calendar, MessageCircle, Users } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export const FeatureCard = () => {
-  const t = useTranslations("features.items");
+  const t = useTranslations("landing.features.items");
 
   const features = [
     {

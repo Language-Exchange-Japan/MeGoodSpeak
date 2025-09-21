@@ -4,7 +4,7 @@ import React from "react";
 import { FeatureCard } from "./FeatureCard";
 
 export const FeaturesSection = () => {
-  const t = useTranslations("features");
+  const t = useTranslations("landing.features");
 
   return (
     <section className="bg-white px-6 py-16 lg:px-12 lg:py-24">

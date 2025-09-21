@@ -7,7 +7,7 @@ import { FooterPolicies } from "./FooterPolicies";
 import { FooterSocialLinks } from "./FooterSocialLinks";
 
 export const Footer = () => {
-  const t = useTranslations("footer.brand");
+  const t = useTranslations("landing.footer.brand");
 
   return (
     <footer className="border-t border-gray-200 bg-white px-6 py-16 lg:px-12 lg:py-20">

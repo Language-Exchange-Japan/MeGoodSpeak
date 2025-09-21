@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React from "react";
 
 import { RegisterFormActions } from "./components/RegisterFormActions";
@@ -13,6 +14,7 @@ import { useRegisterForm } from "./hooks/useRegisterForm";
  * Demonstrates separation of concerns architecture.
  */
 export const RegisterForm: React.FC = () => {
+  const t = useTranslations("register.header");
   const { register, handleSubmit, handleReset, errors, isLoading, successMessage } =
     useRegisterForm();
 
@@ -21,10 +23,8 @@ export const RegisterForm: React.FC = () => {
       <div className="mb-6 border-b border-gray-200 pb-4">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Create Your Account</h1>
-            <p className="mt-1 text-sm text-gray-500">
-              Join our language exchange community and start practicing with native speakers
-            </p>
+            <h1 className="text-2xl font-bold text-gray-900">{t("title")}</h1>
+            <p className="mt-1 text-sm text-gray-500">{t("description")}</p>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import React from "react";
 import { Link } from "@/i18n/navigation";
 
 export const CTASection = () => {
-  const t = useTranslations("cta");
+  const t = useTranslations("landing.cta");
 
   return (
     <section className="bg-black px-6 py-16 lg:px-12 lg:py-24">

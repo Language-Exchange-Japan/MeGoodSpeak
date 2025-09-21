@@ -11,7 +11,7 @@ interface LoginSubmitButtonProps {
  * @param isSubmitting - Whether form is currently submitting
  */
 export function LoginSubmitButton({ isSubmitting }: LoginSubmitButtonProps) {
-  const t = useTranslations("form.submitButton");
+  const t = useTranslations("login.form.submitButton");
 
   return (
     <button

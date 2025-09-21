@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 
 export const FooterPolicies = () => {
-  const t = useTranslations("footer.policies");
+  const t = useTranslations("landing.footer.policies");
 
   return (
     <div className="flex flex-col items-center justify-between space-y-4 border-t border-gray-200 pt-8 md:flex-row md:space-y-0">

@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
  * Social login options component.
  */
 export function LoginSocialOptions() {
-  const t = useTranslations("socialLogin");
+  const t = useTranslations("login.socialLogin");
 
   return (
     <div className="mt-6">
