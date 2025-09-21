@@ -8,7 +8,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;
   const locale = hasLocale(routing.locales, requested) ? requested : routing.defaultLocale;
 
-  const messageFiles = ["common", "login"];
+  const messageFiles = ["common", "login", "landing"];
 
   // Load and merge all message files
   const messages = {};
@@ -17,8 +17,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
     try {
       const fileMessages = (await import(`../messages/${locale}/${file}.json`)).default;
       Object.assign(messages, fileMessages);
-    } catch {
-      console.warn(`Could not load ${file}.json for locale ${locale}`);
+    } catch (error) {
+      console.warn(`Could not load ${file}.json for locale ${locale}:`, error);
     }
   }
 

@@ -1,64 +1,70 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import React from "react";
+
+import { Link } from "@/i18n/navigation";
 
 const sections = [
   {
-    title: "Platform",
+    key: "platform",
     links: [
-      { href: "/features", label: "Features" },
-      { href: "/pricing", label: "Pricing" },
-      { href: "/languages", label: "Languages" },
-      { href: "/mobile", label: "Mobile App" },
+      { href: "/features", key: "features" },
+      { href: "/pricing", key: "pricing" },
+      { href: "/languages", key: "languages" },
+      { href: "/mobile", key: "mobileApp" },
     ],
   },
   {
-    title: "Community",
+    key: "community",
     links: [
-      { href: "/teachers", label: "Find Teachers" },
-      { href: "/students", label: "Find Students" },
-      { href: "/events", label: "Language Events" },
-      { href: "/blog", label: "Blog" },
+      { href: "/teachers", key: "findTeachers" },
+      { href: "/students", key: "findStudents" },
+      { href: "/events", key: "languageEvents" },
+      { href: "/blog", key: "blog" },
     ],
   },
   {
-    title: "Support",
+    key: "support",
     links: [
-      { href: "/help", label: "Help Center" },
-      { href: "/contact", label: "Contact Us" },
-      { href: "/safety", label: "Safety" },
-      { href: "/guidelines", label: "Community Guidelines" },
+      { href: "/help", key: "helpCenter" },
+      { href: "/contact", key: "contactUs" },
+      { href: "/safety", key: "safety" },
+      { href: "/guidelines", key: "communityGuidelines" },
     ],
   },
   {
-    title: "Company",
+    key: "company",
     links: [
-      { href: "/about", label: "About Us" },
-      { href: "/careers", label: "Careers" },
-      { href: "/press", label: "Press" },
-      { href: "/partners", label: "Partners" },
+      { href: "/about", key: "aboutUs" },
+      { href: "/careers", key: "careers" },
+      { href: "/press", key: "press" },
+      { href: "/partners", key: "partners" },
     ],
   },
 ];
 
-export const FooterLinksSection: React.FC = () => (
-  <>
-    {/* Sections */}
-    {sections.map((section) => (
-      <div key={section.title} className="space-y-4">
-        <h3 className="font-semibold text-black">{section.title}</h3>
-        <ul className="space-y-2">
-          {section.links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-gray-600 transition-colors duration-200 hover:text-black"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ))}
-  </>
-);
+export const FooterLinksSection: React.FC = () => {
+  const t = useTranslations("footer.sections");
+
+  return (
+    <>
+      {/* Sections */}
+      {sections.map((section) => (
+        <div key={section.key} className="space-y-4">
+          <h3 className="font-semibold text-black">{t(`${section.key}.title`)}</h3>
+          <ul className="space-y-2">
+            {section.links.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-gray-600 transition-colors duration-200 hover:text-black"
+                >
+                  {t(`${section.key}.links.${link.key}`)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </>
+  );
+};

@@ -1,0 +1,130 @@
+{
+  "introduction": {
+    "title": {
+      "line1": "新しい言語を",
+      "line2": "学んで、",
+      "line3": "新しい友達を作ろう"
+    },
+    "description": "世界中のネイティブスピーカーとつながりましょう。会話を練習し、スキルを向上させ、言語交換を通じて lasting friendships を築きましょう。",
+    "buttons": {
+      "getStarted": "無料で始める",
+      "watchDemo": "デモを見る"
+    },
+    "stats": {
+      "rating": "4.9/5 評価",
+      "learners": "5万人以上のアクティブな学習者",
+      "languages": "100以上の言語"
+    },
+    "liveSession": {
+      "title": "ライブセッション",
+      "participants": "12人が練習中"
+    },
+    "imageAlt": "言語を一緒に学ぶ人々"
+  },
+  "features": {
+    "title": "成功に必要なすべてが揃っています",
+    "description": "私たちのプラットフォームは、あらゆる言語をマスターするために必要なすべてのツールとコミュニティサポートを提供します。",
+    "items": {
+      "realConversations": {
+        "title": "リアルな会話",
+        "description": "ビデオ通話、音声メッセージ、テキストチャットを通じてネイティブスピーカーと練習しましょう。"
+      },
+      "globalCommunity": {
+        "title": "グローバルコミュニティ",
+        "description": "世界190カ国以上の学習者や講師とつながりましょう。"
+      },
+      "flexibleScheduling": {
+        "title": "柔軟なスケジューリング",
+        "description": "使いやすいカレンダーシステムで、あなたのスケジュールに合うセッションを予約しましょう。"
+      },
+      "trackProgress": {
+        "title": "進捗の追跡",
+        "description": "詳細な分析と達成バッジで、あなたの上達を監視しましょう。"
+      }
+    }
+  },
+  "stats": {
+    "title": "世界中の学習者に信頼されています",
+    "items": {
+      "learners": {
+        "number": "50,000+",
+        "label": "アクティブな学習者",
+        "description": "成長するコミュニティに参加"
+      },
+      "languages": {
+        "number": "100+",
+        "label": "言語",
+        "description": "人気の言語から珍しい言語まで"
+      },
+      "conversations": {
+        "number": "1M+",
+        "label": "会話",
+        "description": "完了した練習セッション"
+      },
+      "rating": {
+        "number": "4.9★",
+        "label": "ユーザー評価",
+        "description": "10,000以上のレビューに基づく"
+      }
+    }
+  },
+  "cta": {
+    "title": "言語学習の旅を始める準備はできましたか？",
+    "description": "すでにネイティブスピーカーと一緒に言語スキルを向上させている数千人の学習者に参加しましょう。",
+    "buttons": {
+      "getStarted": "無料で始める",
+      "learnMore": "詳細を見る"
+    },
+    "disclaimer": "無料で開始 • クレジットカード不要 • いつでもキャンセル可能"
+  },
+  "footer": {
+    "brand": {
+      "name": "LangExchange",
+      "description": "世界中のネイティブスピーカーとつながり、リアルな会話を通じてあらゆる言語をマスターしましょう。"
+    },
+    "sections": {
+      "platform": {
+        "title": "プラットフォーム",
+        "links": {
+          "features": "機能",
+          "pricing": "料金",
+          "languages": "言語",
+          "mobileApp": "モバイルアプリ"
+        }
+      },
+      "community": {
+        "title": "コミュニティ",
+        "links": {
+          "findTeachers": "講師を探す",
+          "findStudents": "学習者を探す",
+          "languageEvents": "言語イベント",
+          "blog": "ブログ"
+        }
+      },
+      "support": {
+        "title": "サポート",
+        "links": {
+          "helpCenter": "ヘルプセンター",
+          "contactUs": "お問い合わせ",
+          "safety": "安全性",
+          "communityGuidelines": "コミュニティガイドライン"
+        }
+      },
+      "company": {
+        "title": "会社",
+        "links": {
+          "aboutUs": "私たちについて",
+          "careers": "採用情報",
+          "press": "プレス",
+          "partners": "パートナー"
+        }
+      }
+    },
+    "policies": {
+      "copyright": "© 2024 LangExchange. All rights reserved.",
+      "privacyPolicy": "プライバシーポリシー",
+      "termsOfService": "利用規約",
+      "cookiePolicy": "Cookieポリシー"
+    }
+  }
+}

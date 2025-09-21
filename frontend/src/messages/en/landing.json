@@ -1,0 +1,130 @@
+{
+  "introduction": {
+    "title": {
+      "line1": "Learn new",
+      "line2": "languages,",
+      "line3": "make new friends"
+    },
+    "description": "Connect with native speakers around the world. Practice conversations, improve your skills, and build lasting friendships through language exchange.",
+    "buttons": {
+      "getStarted": "Get Started Free",
+      "watchDemo": "Watch Demo"
+    },
+    "stats": {
+      "rating": "4.9/5 rating",
+      "learners": "50k+ active learners",
+      "languages": "100+ languages"
+    },
+    "liveSession": {
+      "title": "Live Session",
+      "participants": "12 people practicing"
+    },
+    "imageAlt": "People learning languages together"
+  },
+  "features": {
+    "title": "Everything you need to succeed",
+    "description": "Our platform provides all the tools and community support you need to master any language.",
+    "items": {
+      "realConversations": {
+        "title": "Real Conversations",
+        "description": "Practice with native speakers through video calls, voice messages, and text chat."
+      },
+      "globalCommunity": {
+        "title": "Global Community",
+        "description": "Connect with learners and teachers from over 190 countries worldwide."
+      },
+      "flexibleScheduling": {
+        "title": "Flexible Scheduling",
+        "description": "Book sessions that fit your schedule with our easy-to-use calendar system."
+      },
+      "trackProgress": {
+        "title": "Track Progress",
+        "description": "Monitor your improvement with detailed analytics and achievement badges."
+      }
+    }
+  },
+  "stats": {
+    "title": "Trusted by learners worldwide",
+    "items": {
+      "learners": {
+        "number": "50,000+",
+        "label": "Active Learners",
+        "description": "Join our growing community"
+      },
+      "languages": {
+        "number": "100+",
+        "label": "Languages",
+        "description": "From popular to rare languages"
+      },
+      "conversations": {
+        "number": "1M+",
+        "label": "Conversations",
+        "description": "Practice sessions completed"
+      },
+      "rating": {
+        "number": "4.9★",
+        "label": "User Rating",
+        "description": "Based on 10,000+ reviews"
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready to start your language journey?",
+    "description": "Join thousands of learners who are already improving their language skills with native speakers.",
+    "buttons": {
+      "getStarted": "Get Started Free",
+      "learnMore": "Learn More"
+    },
+    "disclaimer": "Free to start • No credit card required • Cancel anytime"
+  },
+  "footer": {
+    "brand": {
+      "name": "LangExchange",
+      "description": "Connect with native speakers worldwide and master any language through real conversations."
+    },
+    "sections": {
+      "platform": {
+        "title": "Platform",
+        "links": {
+          "features": "Features",
+          "pricing": "Pricing",
+          "languages": "Languages",
+          "mobileApp": "Mobile App"
+        }
+      },
+      "community": {
+        "title": "Community",
+        "links": {
+          "findTeachers": "Find Teachers",
+          "findStudents": "Find Students",
+          "languageEvents": "Language Events",
+          "blog": "Blog"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "links": {
+          "helpCenter": "Help Center",
+          "contactUs": "Contact Us",
+          "safety": "Safety",
+          "communityGuidelines": "Community Guidelines"
+        }
+      },
+      "company": {
+        "title": "Company",
+        "links": {
+          "aboutUs": "About Us",
+          "careers": "Careers",
+          "press": "Press",
+          "partners": "Partners"
+        }
+      }
+    },
+    "policies": {
+      "copyright": "© 2024 LangExchange. All rights reserved.",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "cookiePolicy": "Cookie Policy"
+    }
+  }
+}
