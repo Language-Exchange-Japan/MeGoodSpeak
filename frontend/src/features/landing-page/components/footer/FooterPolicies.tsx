@@ -1,5 +1,7 @@
 import { useTranslations } from "next-intl";
 
+import { Link } from "@/i18n/navigation";
+
 export const FooterPolicies = () => {
   const t = useTranslations("landing.footer.policies");
 
@@ -8,21 +10,24 @@ export const FooterPolicies = () => {
       <p className="text-sm text-gray-600">{t("copyright")}</p>
 
       <div className="flex space-x-6 text-sm">
-        <a
+        <Link
           href="/privacy"
           className="text-gray-600 transition-colors duration-200 hover:text-black"
         >
           {t("privacyPolicy")}
-        </a>
-        <a href="/terms" className="text-gray-600 transition-colors duration-200 hover:text-black">
+        </Link>
+        <Link
+          href="/terms"
+          className="text-gray-600 transition-colors duration-200 hover:text-black"
+        >
           {t("termsOfService")}
-        </a>
-        <a
+        </Link>
+        <Link
           href="/cookies"
           className="text-gray-600 transition-colors duration-200 hover:text-black"
         >
           {t("cookiePolicy")}
-        </a>
+        </Link>
       </div>
     </div>
   );
