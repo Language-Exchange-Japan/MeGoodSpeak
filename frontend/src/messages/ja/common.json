@@ -1,0 +1,11 @@
+{
+  "error": {
+    "title": "問題が発生しました",
+    "description": "予期しないエラーが発生しました。後でもう一度お試しください。"
+  },
+  "navigation": {
+    "signUp": "サインアップ",
+    "login": "ログイン",
+    "appName": "MeGoodSpeak"
+  }
+}

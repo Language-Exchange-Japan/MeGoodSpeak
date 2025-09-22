@@ -1,0 +1,45 @@
+{
+  "header": {
+    "brandName": "Language Exchange",
+    "title": "Sign in to your account",
+    "signupPrompt": "Or",
+    "signupLink": "create a new account"
+  },
+  "form": {
+    "email": {
+      "label": "Email address",
+      "placeholder": "Enter your email"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password"
+    },
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot your password?",
+    "submitButton": {
+      "default": "Sign in",
+      "submitting": "Signing in..."
+    }
+  },
+  "socialLogin": {
+    "divider": "Or continue with",
+    "google": "Google",
+    "facebook": "Facebook"
+  },
+  "validation": {
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 6 characters"
+  },
+  "messages": {
+    "success": {
+      "loginSuccess": "Successfully signed in!"
+    },
+    "error": {
+      "invalidCredentials": "Invalid email or password",
+      "serverError": "Something went wrong. Please try again.",
+      "networkError": "Network error. Please check your connection."
+    }
+  }
+}

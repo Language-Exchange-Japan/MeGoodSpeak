@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import React from "react";
 
 import { Input, Select, TextArea, FormSection } from "../../../components/ui";
@@ -17,124 +18,137 @@ export interface RegistrationFormFieldsProps {
 }
 
 export function RegistrationFormFields({ register, errors }: RegistrationFormFieldsProps) {
+  const tSections = useTranslations("register.sections");
+  const tForm = useTranslations("register.form");
+  const tValidation = useTranslations("register.validation");
+
   return (
     <div className="space-y-6">
-      <FormSection title="Personal Information" useGrid>
+      <FormSection title={tSections("personalInfo")} useGrid>
         <Input
-          label="Username"
+          label={tForm("username.label")}
+          placeholder={tForm("username.placeholder")}
           {...register("username", {
-            required: "Username is required",
+            required: tValidation("usernameRequired"),
             minLength: {
               value: 3,
-              message: "Username must be at least 3 characters",
+              message: tValidation("usernameMinLength"),
             },
             maxLength: {
               value: 20,
-              message: "Username must be at most 20 characters",
+              message: tValidation("usernameMaxLength"),
             },
             pattern: {
               value: /^[a-zA-Z0-9_]+$/,
-              message: "Username can only contain letters, numbers, and underscores",
+              message: tValidation("usernamePattern"),
             },
           })}
           error={errors.username?.message}
           required
         />
         <Input
-          label="Email"
+          label={tForm("email.label")}
+          placeholder={tForm("email.placeholder")}
           type="email"
           {...register("email", {
-            required: "Email is required",
+            required: tValidation("emailRequired"),
             pattern: {
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Please enter a valid email address"
-            }
+              message: tValidation("emailInvalid"),
+            },
           })}
           error={errors.email?.message}
           required
         />
         <Input
-          label="Password"
+          label={tForm("password.label")}
+          placeholder={tForm("password.placeholder")}
           type="password"
           {...register("password", {
-            required: "Password is required",
+            required: tValidation("passwordRequired"),
             minLength: {
               value: 8,
-              message: "Password must be at least 8 characters long",
+              message: tValidation("passwordMinLength"),
             },
             pattern: {
-              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};':"\\|,.<>/?]).{8,}$/,
-              message:
-                "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+              value:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};':"\\|,.<>/?]).{8,}$/,
+              message: tValidation("passwordPattern"),
             },
           })}
           error={errors.password?.message}
           required
         />
         <Input
-          label="First Name"
+          label={tForm("firstName.label")}
+          placeholder={tForm("firstName.placeholder")}
           {...register("firstName")}
           error={errors.firstName?.message}
           required
         />
         <Input
-          label="Family Name"
+          label={tForm("familyName.label")}
+          placeholder={tForm("familyName.placeholder")}
           {...register("familyName")}
           error={errors.familyName?.message}
           required
         />
       </FormSection>
 
-      <FormSection title="Language Preferences" useGrid>
+      <FormSection title={tSections("languagePreferences")} useGrid>
         <Select
-          label="Native Language"
+          label={tForm("nativeLanguage.label")}
           {...register("profileOptions.nativeLanguage")}
           options={LANGUAGE_OPTIONS}
-          placeholder="Select your native language"
+          placeholder={tForm("nativeLanguage.placeholder")}
           error={errors.profileOptions?.nativeLanguage?.message}
           required
         />
         <Select
-          label="Language to Practice"
+          label={tForm("practicingLanguage.label")}
           {...register("profileOptions.practicingLanguage.language")}
           options={LANGUAGE_OPTIONS}
-          placeholder="Select language to practice"
+          placeholder={tForm("practicingLanguage.placeholder")}
           error={errors.profileOptions?.practicingLanguage?.language?.message}
           required
         />
         <Select
-          label="Proficiency Level"
+          label={tForm("proficiency.label")}
           {...register("profileOptions.practicingLanguage.proficiency")}
           options={PROFICIENCY_OPTIONS}
+          placeholder={tForm("proficiency.placeholder")}
           error={errors.profileOptions?.practicingLanguage?.proficiency?.message}
           required
         />
       </FormSection>
 
-      <FormSection title="Location & Personal Details" useGrid>
+      <FormSection title={tSections("locationDetails")} useGrid>
         <Select
-          label="Country"
+          label={tForm("country.label")}
           {...register("profileOptions.country")}
           options={COUNTRY_OPTIONS}
-          placeholder="Select your country"
+          placeholder={tForm("country.placeholder")}
           error={errors.profileOptions?.country?.message}
           required
         />
         <Input
-          label="City"
+          label={tForm("city.label")}
+          placeholder={tForm("city.placeholder")}
           {...register("profileOptions.city")}
           error={errors.profileOptions?.city?.message}
           required
         />
         <Select
-          label="Gender"
+          label={tForm("gender.label")}
           {...register("profileOptions.gender")}
           options={GENDER_OPTIONS}
+          placeholder={tForm("gender.placeholder")}
           error={errors.profileOptions?.gender?.message}
           required
         />
         <Input
-          label="Age"
+          label={tForm("age.label")}
+          placeholder={tForm("age.placeholder")}
           type="number"
           min="13"
           max="120"
@@ -144,13 +158,13 @@ export function RegistrationFormFields({ register, errors }: RegistrationFormFie
         />
       </FormSection>
 
-      <FormSection title="About You">
+      <FormSection title={tSections("aboutYou")}>
         <TextArea
-          label="Bio"
+          label={tForm("bio.label")}
           {...register("bio")}
-          placeholder="Tell us a bit about yourself, your interests, and what you'd like to achieve through language exchange..."
+          placeholder={tForm("bio.placeholder")}
           error={errors.bio?.message}
-          helperText="Optional - help others get to know you better"
+          helperText={tForm("bio.helperText")}
         />
       </FormSection>
     </div>

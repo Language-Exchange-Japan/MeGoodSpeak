@@ -1,0 +1,107 @@
+{
+  "header": {
+    "title": "Create Your Account",
+    "description": "Join our language exchange community and start practicing with native speakers"
+  },
+  "sections": {
+    "personalInfo": "Personal Information",
+    "languagePreferences": "Language Preferences",
+    "locationDetails": "Location & Personal Details",
+    "aboutYou": "About You"
+  },
+  "form": {
+    "username": {
+      "label": "Username",
+      "placeholder": "Enter your username"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter your email address"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password"
+    },
+    "firstName": {
+      "label": "First Name",
+      "placeholder": "Enter your first name"
+    },
+    "familyName": {
+      "label": "Family Name",
+      "placeholder": "Enter your family name"
+    },
+    "nativeLanguage": {
+      "label": "Native Language",
+      "placeholder": "Select your native language"
+    },
+    "practicingLanguage": {
+      "label": "Language to Practice",
+      "placeholder": "Select language to practice"
+    },
+    "proficiency": {
+      "label": "Proficiency Level",
+      "placeholder": "Select your proficiency level"
+    },
+    "country": {
+      "label": "Country",
+      "placeholder": "Select your country"
+    },
+    "city": {
+      "label": "City",
+      "placeholder": "Enter your city"
+    },
+    "gender": {
+      "label": "Gender",
+      "placeholder": "Select your gender"
+    },
+    "age": {
+      "label": "Age",
+      "placeholder": "Enter your age"
+    },
+    "bio": {
+      "label": "Bio",
+      "placeholder": "Tell us a bit about yourself, your interests, and what you'd like to achieve through language exchange...",
+      "helperText": "Optional - help others get to know you better"
+    }
+  },
+  "actions": {
+    "resetForm": "Reset Form",
+    "createAccount": {
+      "default": "Create Account",
+      "loading": "Creating Account..."
+    }
+  },
+  "validation": {
+    "usernameRequired": "Username is required",
+    "usernameMinLength": "Username must be at least 3 characters",
+    "usernameMaxLength": "Username must be at most 20 characters",
+    "usernamePattern": "Username can only contain letters, numbers, and underscores",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 8 characters long",
+    "passwordPattern": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+    "firstNameRequired": "First name is required",
+    "familyNameRequired": "Family name is required",
+    "nativeLanguageRequired": "Native language is required",
+    "practicingLanguageRequired": "Language to practice is required",
+    "proficiencyRequired": "Proficiency level is required",
+    "countryRequired": "Country is required",
+    "cityRequired": "City is required",
+    "genderRequired": "Gender is required",
+    "ageRequired": "Age is required",
+    "ageMin": "Age must be at least 13",
+    "ageMax": "Age must be at most 120"
+  },
+  "messages": {
+    "success": {
+      "accountCreated": "Account created successfully! Welcome to Language Exchange!"
+    },
+    "error": {
+      "generalError": "Something went wrong while creating your account. Please try again.",
+      "emailExists": "An account with this email already exists.",
+      "usernameExists": "This username is already taken.",
+      "networkError": "Network error. Please check your connection and try again."
+    }
+  }
+}

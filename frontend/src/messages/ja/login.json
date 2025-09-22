@@ -1,0 +1,45 @@
+{
+  "header": {
+    "brandName": "Language Exchange",
+    "title": "アカウントにサインイン",
+    "signupPrompt": "または",
+    "signupLink": "新しいアカウントを作成"
+  },
+  "form": {
+    "email": {
+      "label": "メールアドレス",
+      "placeholder": "メールアドレスを入力してください"
+    },
+    "password": {
+      "label": "パスワード",
+      "placeholder": "パスワードを入力してください"
+    },
+    "rememberMe": "ログイン状態を保持する",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "submitButton": {
+      "default": "サインイン",
+      "submitting": "サインイン中..."
+    }
+  },
+  "socialLogin": {
+    "divider": "または次の方法で続行",
+    "google": "Google",
+    "facebook": "Facebook"
+  },
+  "validation": {
+    "emailRequired": "メールアドレスは必須です",
+    "emailInvalid": "有効なメールアドレスを入力してください",
+    "passwordRequired": "パスワードは必須です",
+    "passwordMinLength": "パスワードは6文字以上である必要があります"
+  },
+  "messages": {
+    "success": {
+      "loginSuccess": "サインインに成功しました！"
+    },
+    "error": {
+      "invalidCredentials": "メールアドレスまたはパスワードが正しくありません",
+      "serverError": "問題が発生しました。もう一度お試しください。",
+      "networkError": "ネットワークエラーです。接続を確認してください。"
+    }
+  }
+}

@@ -1,6 +1,11 @@
 {
-	"error": {
-		"title": "Something went wrong",
-		"description": "An unexpected error occurred. Please try again later."
-	}
+  "error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try again later."
+  },
+  "navigation": {
+    "signUp": "Sign Up",
+    "login": "Login",
+    "appName": "MeGoodSpeak"
+  }
 }
