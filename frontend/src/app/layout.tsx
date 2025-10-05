@@ -9,14 +9,19 @@ export const metadata: Metadata = {
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params?: Promise<{ locale?: string }>;
 };
 
 /**
  * The root layout for the application.
  */
 export default async function RootLayout({ children, params }: Props) {
-  const { locale } = await params;
+  let locale = "en"; // default locale
+
+  if (params) {
+    const resolvedParams = await params;
+    locale = resolvedParams.locale || "en";
+  }
 
   return (
     <html lang={locale}>
