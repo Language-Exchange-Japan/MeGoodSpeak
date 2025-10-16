@@ -178,7 +178,7 @@ Our frontend currently implements the following utility structure:
 ```
 frontend/src/utils/
 ├── apiClient.ts              # HTTP client with error handling
-├── validation.ts             # Form validation functions  
+├── validation.ts             # Form validation functions
 ├── localStorage.ts           # Browser storage utilities
 ├── classNames.ts            # CSS class manipulation
 ├── logger.ts                # Centralized logging system

@@ -8,40 +8,40 @@ import type { ReactNode } from "react";
  * Base props for components that can have children
  */
 export interface WithChildren {
-	children: ReactNode;
+  children: ReactNode;
 }
 
 /**
  * Base props for components that accept additional CSS classes
  */
 export interface WithClassName {
-	className?: string;
+  className?: string;
 }
 
 /**
  * Base props for components that can be disabled
  */
 export interface WithDisabled {
-	disabled?: boolean;
+  disabled?: boolean;
 }
 
 /**
  * Base props for components that handle loading states
  */
 export interface WithLoading {
-	isLoading?: boolean;
+  isLoading?: boolean;
 }
 
 /**
  * Common form field props
  */
 export interface FormFieldProps extends WithClassName {
-	id?: string;
-	name?: string;
-	label?: string;
-	error?: string;
-	required?: boolean;
-	placeholder?: string;
+  id?: string;
+  name?: string;
+  label?: string;
+  error?: string;
+  required?: boolean;
+  placeholder?: string;
 }
 
 /**
@@ -58,13 +58,13 @@ export type ComponentSize = "sm" | "md" | "lg";
  * Common loading state interface
  */
 export interface LoadingState {
-	isLoading: boolean;
-	error?: string | null;
+  isLoading: boolean;
+  error?: string | null;
 }
 
 /**
  * Common async operation result
  */
 export interface AsyncResult<T> extends LoadingState {
-	data?: T | null;
+  data?: T | null;
 }

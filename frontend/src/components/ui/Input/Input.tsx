@@ -7,12 +7,12 @@ import { getInputClasses } from "../FormFieldWrapper/formStyles";
  * Props for the Input component.
  */
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-	/** Label text to display above the input */
-	label?: string;
-	/** Error message to display below the input */
-	error?: string;
-	/** Helper text to display below the input when no error */
-	helperText?: string;
+  /** Label text to display above the input */
+  label?: string;
+  /** Error message to display below the input */
+  error?: string;
+  /** Helper text to display below the input when no error */
+  helperText?: string;
 }
 
 /**
@@ -27,18 +27,18 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
  * @returns A styled input field with optional label and messages
  */
 export function Input({ label, error, helperText, className = "", id, ...props }: InputProps) {
-	const inputId = id || props.name;
+  const inputId = id || props.name;
 
-	return (
-		<FormFieldWrapper
-			label={label}
-			required={props.required}
-			error={error}
-			helperText={helperText}
-			id={inputId}
-			name={props.name}
-		>
-			<input id={inputId} className={getInputClasses(error, className)} {...props} />
-		</FormFieldWrapper>
-	);
+  return (
+    <FormFieldWrapper
+      label={label}
+      required={props.required}
+      error={error}
+      helperText={helperText}
+      id={inputId}
+      name={props.name}
+    >
+      <input id={inputId} className={getInputClasses(error, className)} {...props} />
+    </FormFieldWrapper>
+  );
 }

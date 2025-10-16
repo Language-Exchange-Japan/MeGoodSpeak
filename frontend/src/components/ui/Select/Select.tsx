@@ -7,16 +7,16 @@ import { getInputClasses } from "../FormFieldWrapper/formStyles";
  * Props for the Select component.
  */
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-	/** Label text to display above the select */
-	label?: string;
-	/** Error message to display below the select */
-	error?: string;
-	/** Helper text to display below the select when no error */
-	helperText?: string;
-	/** Array of options to display in the select dropdown */
-	options: readonly { readonly value: string; readonly label: string }[];
-	/** Placeholder text for the select */
-	placeholder?: string;
+  /** Label text to display above the select */
+  label?: string;
+  /** Error message to display below the select */
+  error?: string;
+  /** Helper text to display below the select when no error */
+  helperText?: string;
+  /** Array of options to display in the select dropdown */
+  options: readonly { readonly value: string; readonly label: string }[];
+  /** Placeholder text for the select */
+  placeholder?: string;
 }
 
 /**
@@ -32,30 +32,39 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
  * @param props - Additional HTML select attributes
  * @returns A styled select dropdown with optional label and messages
  */
-export function Select({ label, error, helperText, options, placeholder, className = "", id, ...props }: SelectProps) {
-	const selectId = id || props.name;
+export function Select({
+  label,
+  error,
+  helperText,
+  options,
+  placeholder,
+  className = "",
+  id,
+  ...props
+}: SelectProps) {
+  const selectId = id || props.name;
 
-	return (
-		<FormFieldWrapper
-			label={label}
-			required={props.required}
-			error={error}
-			helperText={helperText}
-			id={selectId}
-			name={props.name}
-		>
-			<select id={selectId} className={getInputClasses(error, className)} {...props}>
-				{placeholder && (
-					<option value="" disabled>
-						{placeholder}
-					</option>
-				)}
-				{options.map(option => (
-					<option key={option.value} value={option.value}>
-						{option.label}
-					</option>
-				))}
-			</select>
-		</FormFieldWrapper>
-	);
+  return (
+    <FormFieldWrapper
+      label={label}
+      required={props.required}
+      error={error}
+      helperText={helperText}
+      id={selectId}
+      name={props.name}
+    >
+      <select id={selectId} className={getInputClasses(error, className)} {...props}>
+        {placeholder && (
+          <option value="" disabled>
+            {placeholder}
+          </option>
+        )}
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </FormFieldWrapper>
+  );
 }

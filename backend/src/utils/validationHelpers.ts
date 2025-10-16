@@ -13,15 +13,12 @@ import { SUPPORTED_COUNTRIES, SUPPORTED_LANGUAGES } from '../../../shared/user.i
  */
 export const isValidCountry = (value: string): boolean => {
     if (!value) return false;
-   
+
     // Normalize the value by trimming whitespace and converting to lowercase
     const normalizedValue = value.trim().toLowerCase();
-    
-    // Check if it matches any of the supported countries (case-insensitive)
-    return SUPPORTED_COUNTRIES.some((country) => 
-        country.toLowerCase() === normalizedValue
-    );
 
+    // Check if it matches any of the supported countries (case-insensitive)
+    return SUPPORTED_COUNTRIES.some((country) => country.toLowerCase() === normalizedValue);
 };
 
 /**
@@ -31,12 +28,10 @@ export const isValidCountry = (value: string): boolean => {
  * @returns true if the language is valid, false otherwise
  */
 export const isValidLanguage = (value: string): boolean => {
-    if (!value) return false;    
+    if (!value) return false;
     // Normalize the value by trimming whitespace and converting to lowercase
     const normalizedValue = value.trim().toLowerCase();
-    
+
     // Check if it matches any of the supported languages (case-insensitive)
-    return SUPPORTED_LANGUAGES.some((language) => 
-        language.toLowerCase() === normalizedValue
-    );
+    return SUPPORTED_LANGUAGES.some((language) => language.toLowerCase() === normalizedValue);
 };

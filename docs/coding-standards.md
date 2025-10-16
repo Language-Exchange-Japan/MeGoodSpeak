@@ -3,6 +3,7 @@
 ## File Naming Conventions
 
 ### Components
+
 ```
 ✅ CORRECT:
 PascalCase for component files
@@ -17,6 +18,7 @@ PascalCase for component files
 ```
 
 ### Hooks
+
 ```
 ✅ CORRECT:
 camelCase starting with "use"
@@ -31,6 +33,7 @@ camelCase starting with "use"
 ```
 
 ### Utilities
+
 ```
 ✅ CORRECT:
 kebab-case for utility files
@@ -46,6 +49,7 @@ kebab-case for utility files
 ### Pages & API Routes
 
 **App Router:**
+
 ```
 ✅ CORRECT:
 - app/login/page.tsx
@@ -56,6 +60,7 @@ kebab-case for utility files
 ```
 
 **Pages Router:**
+
 ```
 ✅ CORRECT:
 - pages/login.tsx
@@ -72,26 +77,27 @@ kebab-case for utility files
 All public functions, components, types, and service classes should include TSDoc comments:
 
 #### Frontend Components
+
 ```typescript
 /**
  * A reusable button component with multiple variants and sizes.
- * 
+ *
  * @param variant - Visual style variant (default: 'primary')
- * @param size - Button size (default: 'md')  
+ * @param size - Button size (default: 'md')
  * @param isLoading - Shows loading spinner when true (default: false)
  * @param className - Additional CSS classes
  * @param children - Button content
  * @param disabled - Whether the button is disabled
  * @returns A styled button element
  */
-export function Button({ 
-    variant = 'primary', 
-    size = 'md', 
-    isLoading = false,
-    className = '',
-    children,
-    disabled,
-    ...props 
+export function Button({
+  variant = "primary",
+  size = "md",
+  isLoading = false,
+  className = "",
+  children,
+  disabled,
+  ...props
 }: ButtonProps) {
   // Implementation
 }
@@ -100,50 +106,54 @@ export function Button({
  * Props for the Button component.
  */
 export interface ButtonProps {
-    /** Visual style variant of the button */
-    variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-    /** Size of the button */
-    size?: 'sm' | 'md' | 'lg';
-    /** Whether the button is in a loading state */
-    isLoading?: boolean;
-    /** Button content */
-    children: React.ReactNode;
+  /** Visual style variant of the button */
+  variant?: "primary" | "secondary" | "outline" | "ghost";
+  /** Size of the button */
+  size?: "sm" | "md" | "lg";
+  /** Whether the button is in a loading state */
+  isLoading?: boolean;
+  /** Button content */
+  children: React.ReactNode;
 }
 ```
 
 #### Backend Services
+
 ```typescript
 /**
  * Service class for user-related operations including registration, authentication, and profile management.
  */
 export class UserService {
-    /**
-     * Create new user with validation and return user data with authentication token.
-     * 
-     * @param userData - User registration data including profile information
-     * @returns Promise resolving to object containing saved user and JWT token
-     * @throws {AppError} When user already exists or validation fails
-     */
-    static async createUser(userData: IUserRegistrationRequest): Promise<any> {
-        // Implementation
-    }
+  /**
+   * Create new user with validation and return user data with authentication token.
+   *
+   * @param userData - User registration data including profile information
+   * @returns Promise resolving to object containing saved user and JWT token
+   * @throws {AppError} When user already exists or validation fails
+   */
+  static async createUser(userData: IUserRegistrationRequest): Promise<any> {
+    // Implementation
+  }
 }
 ```
 
 #### Controllers
+
 ```typescript
 /**
  * Register a new user account.
- * 
+ *
  * @route POST /api/users/register
  * @access Public
  * @param req - Express Request with user registration data
  * @param res - Express Response object
  * @returns Success response with user data and JWT token
  */
-export const registerUser = asyncHandler(async (req: Request, res: Response) => {
+export const registerUser = asyncHandler(
+  async (req: Request, res: Response) => {
     // Implementation
-});
+  },
+);
 ```
 
 ### Documentation Guidelines
@@ -159,6 +169,7 @@ export const registerUser = asyncHandler(async (req: Request, res: Response) => 
 ## Casing Conventions
 
 ### Components & Classes
+
 ```typescript
 // ✅ PascalCase
 export const LoginForm: React.FC = () => {};
@@ -168,6 +179,7 @@ export type AuthStatus = "idle" | "loading";
 ```
 
 ### Functions & Variables
+
 ```typescript
 // ✅ camelCase
 const handleSubmit = () => {};
@@ -176,6 +188,7 @@ const userPreferences = {};
 ```
 
 ### Constants
+
 ```typescript
 // ✅ SCREAMING_SNAKE_CASE for global constants
 export const API_BASE_URL = "https://api.example.com";
@@ -186,25 +199,27 @@ const defaultOptions = { timeout: 5000 };
 ```
 
 ### Enums
+
 ```typescript
 // ✅ PascalCase for enum name, PascalCase for values
 export enum UserRole {
   Admin = "admin",
   User = "user",
-  Guest = "guest"
+  Guest = "guest",
 }
 
 // ✅ Alternative: const assertion (preferred)
 export const UserRole = {
   Admin: "admin",
   User: "user",
-  Guest: "guest"
+  Guest: "guest",
 } as const;
 ```
 
 ## Code Quality Standards
 
 ### ESLint Configuration
+
 ```json
 {
   "extends": [
@@ -234,6 +249,7 @@ export const UserRole = {
 - **Optimize performance** - useMemo, useCallback when needed
 
 ### Error Handling
+
 ```typescript
 // Global error boundary - app/error.tsx
 "use client";
@@ -255,6 +271,7 @@ export default function Error({
 ```
 
 ### API Route Standards
+
 ```typescript
 // app/api/users/route.ts
 export async function GET(request: Request) {
@@ -270,6 +287,7 @@ export async function GET(request: Request) {
 ### Performance Guidelines
 
 #### Image Optimization
+
 ```typescript
 // ✅ Use Next.js Image component
 import Image from "next/image";
@@ -284,6 +302,7 @@ import Image from "next/image";
 ```
 
 #### Memoization
+
 ```typescript
 // ✅ Memoize expensive calculations
 const expensiveValue = useMemo(() => {
@@ -297,12 +316,13 @@ const handleClick = useCallback(() => {
 ```
 
 #### Current Implementation - Utility Usage Patterns
+
 ```typescript
 // ✅ Import utilities from barrel export
-import { api, validateEmail, classNames, logger } from '../utils';
+import { api, validateEmail, classNames, logger } from "../utils";
 
 // ✅ Use centralized API client
-const users = await api.get<User[]>('/api/users');
+const users = await api.get<User[]>("/api/users");
 
 // ✅ Use validation utilities consistently
 const emailValidation = validateEmail(email);
@@ -314,9 +334,9 @@ if (!emailValidation.isValid) {
 const buttonClass = classNames(
   commonStyles.buttonBase,
   commonStyles.buttonPrimary,
-  isLoading && 'opacity-50'
+  isLoading && "opacity-50",
 );
 
 // ✅ Use contextual logging
-loggers.api.error('API request failed', error);
+loggers.api.error("API request failed", error);
 ```

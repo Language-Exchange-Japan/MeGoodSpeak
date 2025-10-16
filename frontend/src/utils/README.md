@@ -71,7 +71,7 @@ Provides common validation functions with consistent error messages.
 ```typescript
 const emailValidation = validateEmail(email);
 if (!emailValidation.isValid) {
-	setError(emailValidation.error);
+  setError(emailValidation.error);
 }
 ```
 
@@ -118,8 +118,8 @@ Apply conditional classes based on boolean conditions.
 
 ```typescript
 const className = conditionalClasses("btn", {
-	"btn-primary": isPrimary,
-	"btn-loading": isLoading
+  "btn-primary": isPrimary,
+  "btn-loading": isLoading,
 });
 ```
 
@@ -168,12 +168,12 @@ loggers.ui.debug("Component rendered", componentData);
 ```typescript
 // Time synchronous operations
 const result = performanceLogger.time("expensive-operation", () => {
-	return expensiveCalculation();
+  return expensiveCalculation();
 });
 
 // Time asynchronous operations
 const data = await performanceLogger.timeAsync("api-call", () => {
-	return api.get("/data");
+  return api.get("/data");
 });
 ```
 
@@ -206,22 +206,22 @@ Shared TypeScript interfaces for common component patterns:
 import { validateEmail, validatePassword, validateRequired } from "../utils";
 
 function validateForm(data: FormData) {
-	const errors: Record<string, string> = {};
+  const errors: Record<string, string> = {};
 
-	const emailValidation = validateEmail(data.email);
-	if (!emailValidation.isValid) {
-		errors.email = emailValidation.error!;
-	}
+  const emailValidation = validateEmail(data.email);
+  if (!emailValidation.isValid) {
+    errors.email = emailValidation.error!;
+  }
 
-	const passwordValidation = validatePassword(data.password, {
-		minLength: 8,
-		requireUppercase: true
-	});
-	if (!passwordValidation.isValid) {
-		errors.password = passwordValidation.error!;
-	}
+  const passwordValidation = validatePassword(data.password, {
+    minLength: 8,
+    requireUppercase: true,
+  });
+  if (!passwordValidation.isValid) {
+    errors.password = passwordValidation.error!;
+  }
 
-	return { isValid: Object.keys(errors).length === 0, errors };
+  return { isValid: Object.keys(errors).length === 0, errors };
 }
 ```
 
@@ -231,14 +231,14 @@ function validateForm(data: FormData) {
 import { api, loggers } from "../utils";
 
 async function createUser(userData: UserData) {
-	try {
-		const user = await api.post<User>("/api/users", userData);
-		loggers.api.info("User created successfully");
-		return user;
-	} catch (error) {
-		loggers.api.error("Failed to create user", error);
-		throw error; // Re-throw to let component handle
-	}
+  try {
+    const user = await api.post<User>("/api/users", userData);
+    loggers.api.info("User created successfully");
+    return user;
+  } catch (error) {
+    loggers.api.error("Failed to create user", error);
+    throw error; // Re-throw to let component handle
+  }
 }
 ```
 

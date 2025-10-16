@@ -20,21 +20,21 @@ export const COUNTRY_OPTIONS = getCountryOptions(); // Sorted alphabetically
  * Provides initial state for the registration form with proper typing.
  */
 export const DEFAULT_REGISTRATION_DATA: IUserRegistrationRequest = {
-	username: "",
-	email: "",
-	password: "",
-	firstName: "",
-	familyName: "",
-	bio: "",
-	profileOptions: {
-		nativeLanguage: "English" as const,
-		practicingLanguage: {
-			language: "Japanese" as const,
-			proficiency: "Beginner" as const
-		},
-		country: 'Japan' as const,
-		city: "",
-		gender: "Prefer not to say" as const,
-		age: 18
-	}
+  username: "",
+  email: "",
+  password: "",
+  firstName: "",
+  familyName: "",
+  bio: "",
+  profileOptions: {
+    nativeLanguage: "English" as const,
+    practicingLanguage: {
+      language: "Japanese" as const,
+      proficiency: "Beginner" as const,
+    },
+    country: "Japan" as const,
+    city: "",
+    gender: "Prefer not to say" as const,
+    age: 18,
+  },
 };

@@ -516,7 +516,7 @@ export interface Translations {
 import { useTranslations } from "next-intl";
 
 export const useTypedTranslations = <T extends keyof Translations>(
-  namespace: T
+  namespace: T,
 ) => {
   return useTranslations(namespace) as any; // Type assertion for now
 };

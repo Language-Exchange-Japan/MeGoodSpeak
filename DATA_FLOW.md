@@ -22,7 +22,7 @@ graph TB
     %% Network Boundary
     Network{{HTTP Request/Response<br/>JSON Data}}
 
-    %% Backend Components  
+    %% Backend Components
     subgraph "Backend Layer"
         direction TB
         Routes[userRoutes.ts<br/>Route Definition]
@@ -60,7 +60,7 @@ graph TB
     UserService --> AuthService
     UserService --> UserModel
     UserModel --> DB
-    
+
     %% Cross-cutting concerns
     ValidationConst --> Validators
     ValidationConst --> UserService
@@ -107,7 +107,7 @@ graph LR
         ERR["appError.ts<br/>Custom error class<br/>Error standardization"]
     end
 
-    %% Backend Utilities  
+    %% Backend Utilities
     subgraph "Backend Utilities"
         RH["responseHelpers.ts<br/>authSuccess()<br/>error()<br/>success()<br/>validationError()"]
         VH["validatorHandler.ts<br/>validatedAsyncHandler<br/>Error formatting<br/>Middleware wrapper"]
@@ -120,19 +120,19 @@ graph LR
     UFS --> INT
     UA --> ERR
     FC --> INT
-    
+
     VH --> RH
     VH --> VC
     RH --> INT
     AH --> ERR
-    
+
     %% Cross-layer connections
     FF --> INT
     RH --> ERR
 
     %% Styling
     classDef frontend fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:#ffffff
-    classDef shared fill:#FF5722,stroke:#D84315,stroke-width:2px,color:#ffffff  
+    classDef shared fill:#FF5722,stroke:#D84315,stroke-width:2px,color:#ffffff
     classDef backend fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#ffffff
 
     class FF,FC,UFS,UA frontend
@@ -149,7 +149,7 @@ sequenceDiagram
     participant User as User
     participant Form as React Form
     participant FormHook as useFormState
-    participant AsyncHook as useAsync  
+    participant AsyncHook as useAsync
     participant Service as Frontend Service
     participant Route as Express Route
     participant Validator as Validation Middleware
@@ -163,16 +163,16 @@ sequenceDiagram
     User->>Form: Fill Registration Form
     Form->>FormHook: handleChange()
     FormHook->>FormHook: setNestedValue() helper
-    
+
     User->>Form: Submit Form
     Form->>AsyncHook: execute()
     AsyncHook->>Service: registerUser()
     Service->>Route: POST /api/users/register
-    
+
     Route->>Validator: Apply validation rules
     Validator->>Handler: validatedAsyncHandler()
     Handler->>Handler: Check validation errors
-    
+
     alt Validation Errors
         Handler->>Handler: formatValidationErrors()
         Handler->>AsyncHook: ValidationError response
@@ -201,7 +201,8 @@ sequenceDiagram
 ```
 
 ## Authentication Flow
-```
+
+````
 
 ## Core User Registration Data Flow
 
@@ -211,45 +212,48 @@ This diagram shows the simplified data flow for our main user operations:
 flowchart TD
     A[User Registration Form] --> B[Form Validation]
     B --> C[API Call POST users register]
-    
+
     C --> D{Middleware Validation}
     D -->|Valid| E[userController registerUser]
     D -->|Invalid| F[Return Validation Errors]
-    
+
     E --> G[UserService createUser]
     G --> H{Check User Exists}
     H -->|Exists| I[Throw Error User Exists]
     H -->|New User| J[Create User Model]
-    
+
     J --> K[Hash Password Pre-save Hook]
     K --> L[Save to MongoDB]
     L --> M[Generate JWT Token AuthService]
-    
+
     M --> N[ResponseHelper authSuccess]
     N --> O[Return User and Token]
     O --> P[Frontend Success Handler]
-    
+
     I --> Q[ResponseHelper error]
     F --> Q
     Q --> R[Frontend Error Handler]
-    
+
     classDef userAction fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:#ffffff
     classDef apiLayer fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#ffffff
     classDef serviceLayer fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:#ffffff
     classDef dataLayer fill:#9C27B0,stroke:#7B1FA2,stroke-width:2px,color:#ffffff
     classDef response fill:#00BCD4,stroke:#0097A7,stroke-width:2px,color:#ffffff
     classDef error fill:#F44336,stroke:#C62828,stroke-width:2px,color:#ffffff
-    
+
     class A,B userAction
     class C,D,E apiLayer
     class G,H,J,M serviceLayer
     class K,L dataLayer
     class N,O,P response
     class F,I,Q,R error
+````
+
 ```
+
 ```
-```
-```ore Data Flow - Language Exchange App
+
+````ore Data Flow - Language Exchange App
 
 This diagram shows the simplified data flow for our main user operations.
 
@@ -258,33 +262,33 @@ flowchart TD
     %% User Actions
     A[User Registration Form] --> B[Form Validation]
     B --> C[API Call: POST /api/users/register]
-    
+
     %% API Processing
     C --> D{Middleware Validation}
     D -->|Valid| E[userController.registerUser]
     D -->|Invalid| F[Return Validation Errors]
-    
+
     %% Service Layer Processing
     E --> G[UserService.createUser]
     G --> H{Check User Exists}
     H -->|Exists| I[Throw Error: User Exists]
     H -->|New User| J[Create User Model]
-    
+
     %% Database Operations
     J --> K[Hash Password<br/>Pre-save Hook]
     K --> L[Save to MongoDB]
     L --> M[Generate JWT Token<br/>AuthService]
-    
+
     %% Response Formation
     M --> N[ResponseHelper.authSuccess]
     N --> O[Return User + Token]
     O --> P[Frontend Success Handler]
-    
+
     %% Error Handling
     I --> Q[ResponseHelper.error]
     F --> Q
     Q --> R[Frontend Error Handler]
-    
+
     %% Better styling with high contrast
     classDef userAction fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:#ffffff
     classDef apiLayer fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#ffffff
@@ -292,14 +296,14 @@ flowchart TD
     classDef dataLayer fill:#9C27B0,stroke:#7B1FA2,stroke-width:2px,color:#ffffff
     classDef response fill:#00BCD4,stroke:#0097A7,stroke-width:2px,color:#ffffff
     classDef error fill:#F44336,stroke:#C62828,stroke-width:2px,color:#ffffff
-    
+
     class A,B userAction
     class C,D,E apiLayer
     class G,H,J,M serviceLayer
     class K,L dataLayer
     class N,O,P response
     class F,I,Q,R error
-```
+````
 
 ## Authentication Flow
 
@@ -336,27 +340,27 @@ graph TD
     A[Request] --> B[Validation Middleware]
     B -->|Fail| C[ValidationError]
     B -->|Pass| D[Controller]
-    
+
     D --> E[Service Layer]
     E -->|Business Logic Error| F[AppError]
     E -->|Database Error| G[MongoDB Error]
     E -->|Success| H[Success Response]
-    
+
     C --> I[ResponseHelper.validationError]
     F --> J[ResponseHelper.error]
     G --> K[Error Handler Middleware]
     K --> J
-    
+
     I --> L[HTTP 400 Response]
     J --> M[HTTP 4xx/5xx Response]
     H --> N[ResponseHelper.success]
     N --> O[HTTP 200 Response]
-    
+
     %% Better styling with high contrast
     classDef error fill:#F44336,stroke:#C62828,stroke-width:2px,color:#ffffff
     classDef success fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#ffffff
     classDef process fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:#ffffff
-    
+
     class C,F,G,I,J,K,L,M error
     class H,N,O success
     class A,B,D,E process
