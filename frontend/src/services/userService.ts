@@ -24,7 +24,7 @@ export async function getCurrentUser(): Promise<IUser> {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      'Authorization': `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
     credentials: "include", // if using cookies for auth
   });
