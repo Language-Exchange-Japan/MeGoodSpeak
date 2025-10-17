@@ -9,6 +9,7 @@ export const API_CONFIG = {
     USERS: "/api/users",
     USERS_REGISTER: "/api/users/register",
     USERS_LOGIN: "/api/users/login",
+    USERS_ME: "/api/users/profile",
     AUTH: "/api/auth",
     TEST: "/api/test",
     HEALTH: "/",

@@ -1,7 +1,9 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { loginUser } from "../../../services/userService";
+import { tokenStorage } from "../../../utils/localStorage";
 
 import type { SubmitHandler } from "react-hook-form";
 
@@ -18,6 +20,7 @@ interface LoginData {
  * @returns Object containing form state, handlers, and submission logic
  */
 export function useLoginForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -39,7 +42,14 @@ export function useLoginForm() {
 
     try {
       const result = await loginUser(data);
-      setLoginResult(result);
+      if (result && result.token) {
+        tokenStorage.set(result.token);
+        setLoginResult(result);
+        // Redirect to /en/profile after successful login
+        router.push(`/en/profile`);
+      } else {
+        throw new Error("Login failed: No token received.");
+      }
     } catch (error) {
       if (error instanceof Error) {
         setSubmitError(error.message);
