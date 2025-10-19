@@ -1,46 +1,46 @@
 name: CI
 
 on:
-    push:
-        branches: [dev, main, ci-setup]
+  push:
+    branches: [dev, main, ci-setup]
 
 jobs:
-    lint-and-typecheck:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-            - name: Set up Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: "20"
-            - name: Cache node modules
-              uses: actions/cache@v4
-              with:
-                  path: |
-                      **/node_modules
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-node-
-            - name: Install dependencies
-              run: npm install
-            - name: Run Prettier
-              run: |
-                  npx prettier --check . --ignore-path .prettierignore
-              continue-on-error: false
-            - name: Run ESLint (frontend)
-              run: npx eslint . --max-warnings=0 --ignore-path .eslintignore
-              working-directory: frontend
-              continue-on-error: false
-            - name: Run ESLint (backend)
-              run: npx eslint . --max-warnings=0 --ignore-path .eslintignore
-              working-directory: backend
-              continue-on-error: false
-            - name: TypeScript type check (frontend)
-              run: npx tsc --noEmit --project tsconfig.json
-              working-directory: frontend
-              continue-on-error: false
-            - name: TypeScript type check (backend)
-              run: npx tsc --noEmit --project tsconfig.json
-              working-directory: backend
-              continue-on-error: false
+  lint-and-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm install
+      - name: Run Prettier
+        run: |
+          npx prettier --check . --ignore-path .prettierignore
+        continue-on-error: false
+      - name: Run ESLint (frontend)
+        run: npx eslint . --max-warnings=0 --ignore-path .eslintignore
+        working-directory: frontend
+        continue-on-error: false
+      - name: Run ESLint (backend)
+        run: npx eslint . --max-warnings=0 --ignore-path .eslintignore
+        working-directory: backend
+        continue-on-error: false
+      - name: TypeScript type check (frontend)
+        run: npx tsc --noEmit --project tsconfig.json
+        working-directory: frontend
+        continue-on-error: false
+      - name: TypeScript type check (backend)
+        run: npx tsc --noEmit --project tsconfig.json
+        working-directory: backend
+        continue-on-error: false
