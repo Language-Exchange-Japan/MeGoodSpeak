@@ -84,7 +84,7 @@ export const getUserProfile = authenticatedAsyncHandler<AuthenticatedRequest>(as
         throw new Error('User authentication failed');
     }
     const user = await UserService.getUserById(userId);
-    console.warn('[CONTROLLER] User found:', user?.id || user?._id);
+    console.warn('[CONTROLLER] User found:', user?.id ?? user?._id);
     return ResponseHelper.success(res, 'User profile fetched successfully!', user.toJSON());
 });
 

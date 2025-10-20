@@ -71,15 +71,21 @@ export class UserService {
             const token = AuthService.generateToken(savedUser.id);
 
             return { user: savedUser, token };
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error('Error saving user:', error);
-            if (error.name === 'ValidationError') {
-                console.error('Validation error details:', JSON.stringify(error.errors, null, 2));
-                // Log the specific country validation error if it exists
-                if (error.errors?.['profileOptions.country']) {
+            if (
+                typeof error === 'object' &&
+                error !== null &&
+                'name' in error &&
+                (error as { name: string }).name === 'ValidationError'
+            ) {
+                type ValidationErrorType = { name: string; errors?: Record<string, unknown> };
+                const errObj = error as ValidationErrorType;
+                console.error('Validation error details:', JSON.stringify(errObj.errors, null, 2));
+                if (errObj.errors && 'profileOptions.country' in errObj.errors) {
                     console.error(
                         'Country validation error:',
-                        error.errors['profileOptions.country']
+                        (errObj.errors as Record<string, unknown>)['profileOptions.country']
                     );
                     console.error('Country value:', userData.profileOptions.country);
                     console.error('Country value type:', typeof userData.profileOptions.country);
