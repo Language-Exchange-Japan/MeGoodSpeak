@@ -44,21 +44,25 @@ src/
 ### ✅ ALWAYS Test
 
 **Utility Functions**
+
 - Pure functions, calculations, validations
 - Data transformations, formatters
 - Business logic functions
 
 **Custom Hooks**
+
 - State management logic
 - API calls and data fetching
 - Complex business logic
 
 **API Functions**
+
 - Data fetching functions
 - Request/response transformations
 - Error handling logic
 
 **Critical User Flows**
+
 - Authentication processes
 - Payment/checkout flows
 - Data submission forms
@@ -67,17 +71,20 @@ src/
 ### ✅ OFTEN Test
 
 **Component Behavior**
+
 - User interactions (clicks, form submissions)
 - Conditional rendering based on props/state
 - Error states and loading states
 - Accessibility features
 
 **Form Validation**
+
 - Input validation rules
 - Error message display
 - Form submission handling
 
 **Complex Components**
+
 - Multi-step forms or wizards
 - Data tables with sorting/filtering
 - Interactive dashboards
@@ -85,6 +92,7 @@ src/
 ### ⚠️ CONSIDER Testing
 
 **Simple Components**
+
 - Basic presentational components
 - Simple UI elements without logic
 - Third-party component wrappers
@@ -92,15 +100,18 @@ src/
 ### ❌ DON'T Test
 
 **Trivial Functions**
+
 - Simple getters, basic formatters
 - Direct property access
 - Constants and configuration
 
 **Third-Party Libraries**
+
 - Already tested by maintainers
 - Focus on integration points instead
 
 **Implementation Details**
+
 - Internal component state
 - Private methods or functions
 - CSS styles or layout
@@ -226,7 +237,7 @@ import { useAuth } from "./useAuth";
 jest.mock("../api/auth", () => ({
   login: jest.fn(),
   logout: jest.fn(),
-  getCurrentUser: jest.fn()
+  getCurrentUser: jest.fn(),
 }));
 
 describe("useAuth", () => {
@@ -252,7 +263,7 @@ describe("useAuth", () => {
     await act(async () => {
       await result.current.login({
         email: "test@example.com",
-        password: "password123"
+        password: "password123",
       });
     });
 
@@ -260,7 +271,7 @@ describe("useAuth", () => {
     expect(result.current.isAuthenticated).toBe(true);
     expect(mockLogin).toHaveBeenCalledWith({
       email: "test@example.com",
-      password: "password123"
+      password: "password123",
     });
   });
 
@@ -273,7 +284,7 @@ describe("useAuth", () => {
     await act(async () => {
       await result.current.login({
         email: "test@example.com",
-        password: "wrong-password"
+        password: "wrong-password",
       });
     });
 
@@ -288,11 +299,7 @@ describe("useAuth", () => {
 
 ```typescript
 // validation.test.ts
-import {
-  isValidEmail,
-  isValidPassword,
-  validateLoginForm
-} from "./validation";
+import { isValidEmail, isValidPassword, validateLoginForm } from "./validation";
 
 describe("Validation Utils", () => {
   describe("isValidEmail", () => {
@@ -300,10 +307,10 @@ describe("Validation Utils", () => {
       const validEmails = [
         "test@example.com",
         "user.name@domain.co.uk",
-        "user+tag@example.org"
+        "user+tag@example.org",
       ];
 
-      validEmails.forEach(email => {
+      validEmails.forEach((email) => {
         expect(isValidEmail(email)).toBe(true);
       });
     });
@@ -315,10 +322,10 @@ describe("Validation Utils", () => {
         "user@",
         "",
         "user@domain",
-        "user name@example.com"
+        "user name@example.com",
       ];
 
-      invalidEmails.forEach(email => {
+      invalidEmails.forEach((email) => {
         expect(isValidEmail(email)).toBe(false);
       });
     });
@@ -326,13 +333,9 @@ describe("Validation Utils", () => {
 
   describe("isValidPassword", () => {
     it("returns true for passwords meeting requirements", () => {
-      const validPasswords = [
-        "password123",
-        "mySecurePassword!",
-        "12345678"
-      ];
+      const validPasswords = ["password123", "mySecurePassword!", "12345678"];
 
-      validPasswords.forEach(password => {
+      validPasswords.forEach((password) => {
         expect(isValidPassword(password)).toBe(true);
       });
     });
@@ -340,7 +343,7 @@ describe("Validation Utils", () => {
     it("returns false for passwords too short", () => {
       const shortPasswords = ["123", "pass", ""];
 
-      shortPasswords.forEach(password => {
+      shortPasswords.forEach((password) => {
         expect(isValidPassword(password)).toBe(false);
       });
     });
@@ -350,7 +353,7 @@ describe("Validation Utils", () => {
     it("returns no errors for valid form data", () => {
       const validData = {
         email: "test@example.com",
-        password: "password123"
+        password: "password123",
       };
 
       const errors = validateLoginForm(validData);
@@ -360,7 +363,7 @@ describe("Validation Utils", () => {
     it("returns errors for invalid form data", () => {
       const invalidData = {
         email: "invalid-email",
-        password: "123"
+        password: "123",
       };
 
       const errors = validateLoginForm(invalidData);
@@ -381,21 +384,21 @@ module.exports = {
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/src/__tests__/setup.ts"],
   moduleNameMapping: {
-    "^@/(.*)$": "<rootDir>/src/$1"
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
   collectCoverageFrom: [
     "src/**/*.{ts,tsx}",
     "!src/**/*.stories.{ts,tsx}",
-    "!src/**/*.d.ts"
+    "!src/**/*.d.ts",
   ],
   coverageThreshold: {
     global: {
       branches: 70,
       functions: 70,
       lines: 70,
-      statements: 70
-    }
-  }
+      statements: 70,
+    },
+  },
 };
 ```
 

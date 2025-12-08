@@ -7,12 +7,12 @@ import { getInputClasses } from "../FormFieldWrapper/formStyles";
  * Props for the TextArea component.
  */
 export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-	/** Label text to display above the textarea */
-	label?: string;
-	/** Error message to display below the textarea */
-	error?: string;
-	/** Helper text to display below the textarea when no error */
-	helperText?: string;
+  /** Label text to display above the textarea */
+  label?: string;
+  /** Error message to display below the textarea */
+  error?: string;
+  /** Helper text to display below the textarea when no error */
+  helperText?: string;
 }
 
 /**
@@ -26,24 +26,31 @@ export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextArea
  * @param props - Additional HTML textarea attributes
  * @returns A styled textarea field with optional label and messages
  */
-export function TextArea({ label, error, helperText, className = "", id, ...props }: TextAreaProps) {
-	const textAreaId = id || props.name;
+export function TextArea({
+  label,
+  error,
+  helperText,
+  className = "",
+  id,
+  ...props
+}: TextAreaProps) {
+  const textAreaId = id || props.name;
 
-	return (
-		<FormFieldWrapper
-			label={label}
-			required={props.required}
-			error={error}
-			helperText={helperText}
-			id={textAreaId}
-			name={props.name}
-		>
-			<textarea
-				id={textAreaId}
-				rows={4}
-				className={getInputClasses(error, `resize-vertical ${className}`)}
-				{...props}
-			/>
-		</FormFieldWrapper>
-	);
+  return (
+    <FormFieldWrapper
+      label={label}
+      required={props.required}
+      error={error}
+      helperText={helperText}
+      id={textAreaId}
+      name={props.name}
+    >
+      <textarea
+        id={textAreaId}
+        rows={4}
+        className={getInputClasses(error, `resize-vertical ${className}`)}
+        {...props}
+      />
+    </FormFieldWrapper>
+  );
 }

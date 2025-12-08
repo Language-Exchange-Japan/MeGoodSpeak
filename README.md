@@ -5,20 +5,20 @@ A multilingual platform designed to help users connect, communicate, and exchang
 ## Features (Planned & In Progress)
 
 - Secure user authentication and profile management
-- One-on-one messaging 
+- One-on-one messaging
 - Notification system for unread messages, activity, and promotions
 - Language preference matching and interface localization
 - Admin dashboard for moderation and analytics
 
 ## 🛠 Tech Stack
 
-| Layer        | Tools & Frameworks                   |
-|--------------|--------------------------------------|
-| Frontend     | Next.js, TypeScript, Tailwind CSS    |
-| Backend      | Node.js, Express, Mongoose, MongoDB  |
-| Authentication | JWT + middleware (WIP)            |
-| Deployment   | Docker, Vercel / AWS (TBD)           |
-| Testing      | Jest + React Testing Library (TBD)   |
+| Layer          | Tools & Frameworks                  |
+| -------------- | ----------------------------------- |
+| Frontend       | Next.js, TypeScript, Tailwind CSS   |
+| Backend        | Node.js, Express, Mongoose, MongoDB |
+| Authentication | JWT + middleware (WIP)              |
+| Deployment     | Docker, Vercel / AWS (TBD)          |
+| Testing        | Jest + React Testing Library (TBD)  |
 
 ## Project Structure
 
@@ -36,7 +36,8 @@ This is a monorepo using npm workspaces with the following structure:
 ## Development Setup
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm 9+
 - MongoDB
 
@@ -51,20 +52,22 @@ npm install
 ### Development Commands
 
 **Start both frontend and backend in development mode:**
+
 ```bash
 # Frontend (Next.js dev server)
 npm run dev --workspace=frontend
 
-# Backend (Express.js with hot reload)  
+# Backend (Express.js with hot reload)
 npm run dev --workspace=backend
 ```
 
 **Build for production:**
+
 ```bash
 # Build frontend
 npm run build --workspace=frontend
 
-# Build backend  
+# Build backend
 npm run build --workspace=backend
 
 # Build both
@@ -72,6 +75,7 @@ npm run build --workspaces
 ```
 
 **Other useful commands:**
+
 ```bash
 # Lint frontend
 npm run lint --workspace=frontend
@@ -86,13 +90,14 @@ npm run <script> --workspaces
 ## Architecture
 
 - **Frontend**: Next.js 15 with App Router, TypeScript, Tailwind CSS
-- **Backend**: Express.js with TypeScript, MongoDB, JWT authentication  
+- **Backend**: Express.js with TypeScript, MongoDB, JWT authentication
 - **Shared**: Common interfaces and utilities
 - **Documentation**: Comprehensive TSDoc comments throughout
 
 ## Current Implementation Status
 
 ### ✅ Completed Features
+
 - User registration and authentication flow
 - Language learning profile management
 - Responsive design with modern UI components
@@ -103,6 +108,7 @@ npm run <script> --workspaces
 - Cross-platform TypeScript configuration
 
 ### 🚧 In Development
+
 - Enhanced authentication middleware
 - Real-time messaging system
 - Language matching algorithms
@@ -125,4 +131,3 @@ Please read our [coding standards](coding-standards.md) and [git workflow](git-w
 ## License
 
 See [LICENSE](../LICENSE) file for details.
-

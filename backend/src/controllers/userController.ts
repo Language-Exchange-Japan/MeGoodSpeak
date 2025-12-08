@@ -45,6 +45,21 @@ export const loginUser = asyncHandler(async (req: Request, res: Response) => {
 
     // Authenticate user using service layer
     const { user, token } = await UserService.authenticateUser(email, password);
+    /**
+     * Set JWT token in HTTP-only cookie for security.
+     *
+     * @remarks
+     * - httpOnly: Prevents JavaScript access to the cookie (mitigates XSS)
+     * - secure: Only sends cookie over HTTPS in production
+     * - sameSite: 'lax' helps prevent CSRF while allowing top-level navigation
+     * - maxAge: Cookie expires in 1 week
+     */
+    res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week
+    });
 
     // Send success response
     return ResponseHelper.authSuccess(res, 'Login successful!', user, token);
@@ -60,13 +75,16 @@ export const loginUser = asyncHandler(async (req: Request, res: Response) => {
  * @returns Success response with user profile data
  */
 export const getUserProfile = authenticatedAsyncHandler<AuthenticatedRequest>(async (req, res) => {
+    console.warn('[CONTROLLER] getUserProfile called');
+    console.warn('[CONTROLLER] req.user:', req.user);
     // User is guaranteed to exist due to authenticatedAsyncHandler
     const userId = req.user?.id;
     if (!userId) {
+        console.warn('[CONTROLLER] No userId found in req.user');
         throw new Error('User authentication failed');
     }
     const user = await UserService.getUserById(userId);
-
+    console.warn('[CONTROLLER] User found:', user?.id ?? user?._id);
     return ResponseHelper.success(res, 'User profile fetched successfully!', user.toJSON());
 });
 

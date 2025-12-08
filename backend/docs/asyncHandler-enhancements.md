@@ -1,32 +1,38 @@
 # AsyncHandler Enhancements
 
 ## Overview
+
 Enhanced the asyncHandler utility with better error handling, logging, and specialized handlers for different use cases.
 
 ## New Features
 
 ### 1. Enhanced AsyncHandler (`asyncHandler`)
+
 - **Improved Error Logging**: Logs detailed error information including request path, method, and stack trace
 - **Specialized Error Handling**: Handles different types of errors (ValidationError, MongoDB errors, JWT errors)
 - **Automatic Response**: Automatically sends appropriate error responses without manual handling
 
 ### 2. Authenticated AsyncHandler (`authenticatedAsyncHandler`)
+
 - **Automatic Auth Check**: Automatically verifies user authentication before executing handler
 - **Type Safety**: Ensures `req.user` is available and properly typed
 - **Simplified Code**: Removes repetitive authentication checks from controllers
 
 ### 3. Validation AsyncHandler (`validatedAsyncHandler`)
+
 - **Automatic Validation**: Checks express-validator results before executing handler
 - **Consistent Errors**: Returns standardized validation error responses
 - **Enhanced Logging**: Includes request body in error logs for debugging
 
 ### 4. Combined Handler (`validatedAuthenticatedAsyncHandler`)
+
 - **Auth + Validation**: Combines authentication and validation checks
 - **Single Handler**: Simplifies routes that need both authentication and validation
 
 ## Usage Examples
 
 ### Basic Async Handler
+
 ```typescript
 export const publicEndpoint = asyncHandler(async (req, res) => {
     // Your logic here - errors are automatically caught and handled
@@ -36,15 +42,19 @@ export const publicEndpoint = asyncHandler(async (req, res) => {
 ```
 
 ### Authenticated Handler
+
 ```typescript
-export const protectedEndpoint = authenticatedAsyncHandler<AuthenticatedRequest>(async (req, res) => {
-    // req.user is guaranteed to exist and be properly typed
-    const userSpecificData = await SomeService.getDataForUser(req.user!.id);
-    return ResponseHelper.success(res, 'Data retrieved', userSpecificData);
-});
+export const protectedEndpoint = authenticatedAsyncHandler<AuthenticatedRequest>(
+    async (req, res) => {
+        // req.user is guaranteed to exist and be properly typed
+        const userSpecificData = await SomeService.getDataForUser(req.user!.id);
+        return ResponseHelper.success(res, 'Data retrieved', userSpecificData);
+    }
+);
 ```
 
 ### Validation Handler
+
 ```typescript
 export const validatedEndpoint = validatedAsyncHandler(async (req, res) => {
     // Validation has already been checked - req.body is valid
@@ -72,12 +82,13 @@ export const validatedEndpoint = validatedAsyncHandler(async (req, res) => {
 ## Migration Guide
 
 ### Before (Old Pattern)
+
 ```typescript
 export const oldHandler = asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
     if (!req.user) {
         return ResponseHelper.error(res, 'Authentication required', 401);
     }
-    
+
     try {
         const result = await SomeService.doSomething(req.user.id);
         return ResponseHelper.success(res, 'Success', result);
@@ -88,6 +99,7 @@ export const oldHandler = asyncHandler(async (req: AuthenticatedRequest, res: Re
 ```
 
 ### After (New Pattern)
+
 ```typescript
 export const newHandler = authenticatedAsyncHandler<AuthenticatedRequest>(async (req, res) => {
     const result = await SomeService.doSomething(req.user!.id);

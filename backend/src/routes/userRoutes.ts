@@ -35,12 +35,15 @@ router.post('/login', validateLogin, loginUser);
 
 /**
  * @route GET /api/users/profile
- * @desc Get authenticated user's profile
+ * @desc Get current user profile
  * @access Private (requires JWT token)
  */
 router.get(
     '/profile',
-    passport.authenticate('jwt', { session: false }), // JWT authentication middleware
+    (req, res, next) => {
+        next();
+    },
+    passport.authenticate('jwt', { session: false }),
     getUserProfile as RequestHandler
 );
 
@@ -61,5 +64,3 @@ router.put(
 );
 
 export default router; // Export the router to be used in index.ts
-
-// Define the user login route

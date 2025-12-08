@@ -90,7 +90,14 @@ const UserSchema = new Schema<IUserDocument>(
                 },
                 proficiency: {
                     type: String,
-                    enum: ['Beginner', 'Intermediate', 'Advanced'],
+                    enum: [
+                        'Beginner',
+                        'Elementary',
+                        'Intermediate',
+                        'Upper Intermediate',
+                        'Advanced',
+                        'Native',
+                    ],
                     required: [true, 'Proficiency level is required'],
                 },
             },

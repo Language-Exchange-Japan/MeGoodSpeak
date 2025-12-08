@@ -50,19 +50,19 @@ graph TB
     Controllers --> BusinessServices
     BusinessServices --> Models
     Models --> Database
-    
+
     %% Response flow
     BusinessServices --> ResponseHelpers
     ResponseHelpers --> Controllers
     Controllers --> Routes
     Routes --> Services
     Services --> UI
-    
+
     %% Validation flow
     Middleware --> Validators
     Validators --> Validation
     BusinessServices --> Validation
-    
+
     %% Shared components
     Controllers -.-> Interfaces
     BusinessServices -.-> Interfaces
@@ -102,14 +102,14 @@ sequenceDiagram
     MW->>MW: Authentication Check
     MW->>MW: Input Validation
     MW->>Ctrl: Forward Request
-    
+
     Ctrl->>Svc: Call Business Logic
     Svc->>Svc: Process Business Rules
     Svc->>Model: Database Operation
     Model->>DB: Query/Update
     DB-->>Model: Data Response
     Model-->>Svc: Processed Data
-    
+
     Svc->>Svc: Apply Business Logic
     Svc-->>Ctrl: Return Result
     Ctrl->>Ctrl: Format Response
@@ -120,48 +120,57 @@ sequenceDiagram
 ## Component Responsibilities
 
 ### Frontend Layer
+
 - **React Components**: Handle user interactions and display data
 - **Custom Hooks**: Manage state and side effects (form state, async operations)
 - **Frontend Services**: Handle API communication with backend
 - **Utilities**: Helper functions for form handling and data manipulation
 
 ### API Layer
+
 - **Express Routes**: Define API endpoints and route HTTP requests
 - **Middleware**: Handle cross-cutting concerns (auth, validation, logging)
 
 ### Backend Service Layer
+
 - **Controllers**: Handle HTTP requests/responses, coordinate between layers
 - **Business Services**: Contain core business logic and domain rules
 - **Response Helpers**: Standardize API response formatting
 - **Validation Handlers**: Process and format validation errors
 
 ### Data Layer
+
 - **Mongoose Models**: Define data structure and database interactions
 - **MongoDB**: Persist application data
 - **Validation Constants**: Centralize validation rules and error messages
 
 ### Shared Layer
+
 - **TypeScript Interfaces**: Ensure type safety across frontend/backend
 - **Error Handling**: Consistent error management throughout the app
 
 ## Key Benefits of This Architecture
 
 ### 1. Separation of Concerns
+
 - Each layer has a specific responsibility
 - Changes in one layer don't directly affect others
 - Easier to test individual components
 
 ### 2. Maintainability
+
 - Business logic is centralized in service layer
 - Validation rules are in one place
 - Response formatting is consistent
 
 ### 3. Scalability
+
 - New features can be added without major refactoring
 - Services can be easily extended or replaced
 - Database layer is abstracted from business logic
 
 ### 4. Testability
+
 - Service layer can be unit tested independently
 - Controllers can be tested without database dependencies
 - Frontend can be tested with mocked services
@@ -186,7 +195,7 @@ graph LR
     %% Better styling with dark backgrounds and white text
     classDef default fill:#1976D2,stroke:#0D47A1,stroke-width:2px,color:#ffffff
     classDef success fill:#388E3C,stroke:#1B5E20,stroke-width:2px,color:#ffffff
-    
+
     class A,B,C default
     class D,E,F default
     class G,H,I default
@@ -242,21 +251,21 @@ graph TB
     %% Frontend Side
     subgraph "Frontend Ecosystem"
         direction TB
-        
+
         subgraph "React Components"
             RegForm[Registration Form<br/>UI Component]
             LoginForm[Login Form<br/>UI Component]
         end
-        
+
         subgraph "Custom Hooks"
             FormState[useFormState<br/>• handleChange<br/>• resetForm<br/>• setFormData]
             AsyncState[useAsync<br/>• execute<br/>• loading states<br/>• error handling]
         end
-        
+
         subgraph "Frontend Services"
             UserSvc[userService.ts<br/>• registerUser()<br/>• loginUser()<br/>• API calls]
         end
-        
+
         subgraph "Frontend Utils"
             FormHelpers[formHelpers.ts<br/>• setNestedValue<br/>• form manipulation]
             FormConst[formConstants.ts<br/>• field options<br/>• validation rules]
@@ -269,32 +278,32 @@ graph TB
     %% Backend Side
     subgraph "Backend Ecosystem"
         direction TB
-        
+
         subgraph "Route Layer"
             UserRoutes[userRoutes.ts<br/>• route definitions<br/>• middleware setup]
         end
-        
+
         subgraph "Middleware Layer"
             ValidMW[Validation Middleware<br/>• express-validator<br/>• input sanitization]
             AuthMW[Auth Middleware<br/>• JWT verification<br/>• user context]
         end
-        
+
         subgraph "Controller Layer"
             UserCtrl[userController.ts<br/>• request handling<br/>• response coordination]
         end
-        
+
         subgraph "Service Layer"
             UserBusiness[userService.ts<br/>• business logic<br/>• data operations]
             AuthBusiness[authService.ts<br/>• JWT management<br/>• token operations]
         end
-        
+
         subgraph "Backend Utils"
             RespHelpers[responseHelpers.ts<br/>• authSuccess()<br/>• error()<br/>• success()]
             ValidHandler[validatorHandler.ts<br/>• async wrappers<br/>• error formatting]
             ValidConst[validationConstants.ts<br/>• rules & messages<br/>• business constraints]
             AsyncHandler[asyncHandler.ts<br/>• error catching<br/>• promise handling]
         end
-        
+
         subgraph "Data Layer"
             UserModel[User Model<br/>• Mongoose schema<br/>• database operations]
         end
@@ -325,14 +334,14 @@ graph TB
     UserBusiness --> AuthBusiness
     UserBusiness --> UserModel
     UserModel --> MongoDB
-    
+
     %% Utility Dependencies
     ValidMW --> ValidConst
     ValidHandler --> ValidConst
     ValidHandler --> RespHelpers
     UserCtrl --> AsyncHandler
     UserBusiness --> AsyncHandler
-    
+
     %% Response Flow
     MongoDB -.-> UserModel
     UserModel -.-> UserBusiness
@@ -386,7 +395,7 @@ graph TD
     UseAsync --> AppError
     FormConst --> Interfaces
     FormHelpers --> Interfaces
-    
+
     ValidHandler --> RespHelpers
     ValidHandler --> ValidConst
     RespHelpers --> Interfaces
